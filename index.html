@@ -207,53 +207,63 @@
 </head>
 <body class="bg-surface font-body-md text-on-surface">
 <!-- TopNavBar -->
-<header class="fixed top-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-md border-b border-surface-container shadow-2xs transition-all duration-300">
-<nav class="flex justify-between items-center h-16 sm:h-18 px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto gap-4">
-<a href="index.html" class="font-title-md text-base sm:text-lg font-extrabold tracking-tight text-primary uppercase whitespace-nowrap hover:opacity-80 transition-opacity">CITRA PRIMA SIGNATURE</a>
-<div class="hidden lg:flex items-center space-x-5 xl:space-x-7 text-xs xl:text-sm whitespace-nowrap">
+<header class="fixed top-0 left-0 w-full z-50 bg-surface/95 backdrop-blur-md border-b border-surface-container shadow-2xs transition-all duration-300">
+<div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14 sm:h-16 gap-3">
+<a href="index.html" class="font-title-md text-sm sm:text-base lg:text-lg font-extrabold tracking-tight text-primary uppercase whitespace-nowrap hover:opacity-80 transition-opacity">CITRA PRIMA SIGNATURE</a>
+<div class="hidden lg:flex items-center space-x-6 text-xs xl:text-sm whitespace-nowrap">
 <a class="text-primary font-bold border-b-2 border-primary pb-1" href="index.html">Beranda</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors duration-200 nav-link-anim" href="catalogue.html">Koleksi</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors duration-200 nav-link-anim" href="good-perpouse.html">Good Perpouse</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors duration-200 nav-link-anim" href="layanan.html">Layanan</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors duration-200 nav-link-anim" href="#promo">Promo</a>
 </div>
-<div class="flex items-center space-x-2 sm:space-x-3 shrink-0">
-<div class="relative group hidden xl:block">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
-<input class="bg-surface-container-low border border-outline-variant/30 rounded-full pl-8 pr-3 py-1.5 text-xs focus:ring-1 focus:ring-primary w-40 transition-all duration-300 focus:w-56" placeholder="Cari kacamata..." type="text"/>
+<div class="flex items-center space-x-2 shrink-0">
+<div class="relative group hidden sm:block">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[16px]">search</span>
+<input class="bg-surface-container-low border border-outline-variant/30 rounded-full pl-7 pr-3 py-1 text-xs focus:ring-1 focus:ring-primary w-36 transition-all duration-300 focus:w-48" placeholder="Cari kacamata..." type="text"/>
 </div>
-<a href="https://wa.me/628123456789?text=Halo%2C%20saya%20tertarik%20berkonsultasi%20mengenai%20koleksi%20kacamata%20Citra%20Prima." target="_blank" class="btn-shimmer bg-primary text-on-primary px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs font-semibold tracking-wide hover:opacity-95 transition-all duration-300 hover:-translate-y-0.5 shadow flex items-center gap-1.5 whitespace-nowrap">
-<span class="material-symbols-outlined text-[16px]">chat</span>
+<a href="https://wa.me/628123456789?text=Halo%2C%20saya%20tertarik%20berkonsultasi%20mengenai%20koleksi%20kacamata%20Citra%20Prima." target="_blank" class="btn-shimmer bg-primary text-on-primary px-3 sm:px-3.5 py-1.5 rounded-lg text-xs font-semibold tracking-wide hover:opacity-95 transition-all duration-300 shadow flex items-center gap-1 whitespace-nowrap">
+<span class="material-symbols-outlined text-[15px]">chat</span>
 <span>Konsultasi WA</span>
 </a>
 </div>
-</nav>
+</div>
+<!-- Mobile Scrollable Tabs Bar (Always visible on mobile/tablet < lg) -->
+<div class="flex lg:hidden items-center justify-start gap-4 sm:gap-6 py-1.5 border-t border-surface-container/60 overflow-x-auto scrollbar-hide text-[11px] sm:text-xs font-semibold whitespace-nowrap">
+<a class="text-primary font-bold border-b-2 border-primary pb-0.5" href="index.html">Beranda</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors py-0.5" href="catalogue.html">Koleksi</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors py-0.5" href="good-perpouse.html">Good Perpouse</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors py-0.5" href="layanan.html">Layanan</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors py-0.5" href="#promo">Promo</a>
+</div>
+</div>
 </header>
-<main class="pt-16 sm:pt-18">
+<main class="pt-24 sm:pt-26 lg:pt-20">
 <!-- Hero Section -->
-<section class="relative min-h-[440px] sm:min-h-[500px] lg:h-[62vh] max-h-[640px] overflow-hidden">
+<section class="relative min-h-[340px] sm:min-h-[380px] lg:min-h-[50vh] max-h-[560px] overflow-hidden">
 <div class="absolute inset-0 z-0">
 <div class="w-full h-full bg-cover bg-center transition-transform duration-10000 hover:scale-105" data-alt="A luxurious, minimalist optical boutique interior with warm recessed lighting and wooden display shelves. Two professional staff members in dark suits are assisting a customer. The aesthetic is extremely high-end, featuring clean lines, large round mirrors, and a neutral color palette with Forest Green accents in the decor. Soft natural light flows through a large window." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAeNgP3E-CK3DKZ9-PE7zmfrhIf2YdCuMCORImbhiwA43787vkj9eWSlzePmOjEdGegry6CWoUdxxWde8wnkmloepaVZZlFdMU5t8hlCRwgiHwwW_d1D_YnKC7oMSyCdYuk8pnoPEbmPrl3eMwW7gPm_1l2_5BSN6RSOrnRp35NiwUumzC0oDjc-zS_3Msi1lcfzhSEEKtx1TIE8A-Gz_GXLrQXxO1De33nGT69GgoswnmFbEPRtWN7Iw')">
 </div>
 <div class="absolute inset-0 bg-black/20"></div>
 </div>
-<div class="relative z-10 h-full flex items-center px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto py-10 sm:py-14">
-<div class="max-w-xl bg-surface/90 p-6 sm:p-8 lg:p-10 backdrop-blur-md reveal-up shadow-2xl rounded-xl">
-<h1 class="font-display-lg text-2xl sm:text-3xl lg:text-4xl font-light text-primary mb-3 sm:mb-4 leading-tight">
+<div class="relative z-10 h-full flex items-center px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto py-8 sm:py-10">
+<div class="max-w-xl bg-surface/90 p-5 sm:p-6 lg:p-8 backdrop-blur-md reveal-up shadow-2xl rounded-xl">
+<h1 class="font-display-lg text-xl sm:text-2xl lg:text-3xl font-light text-primary mb-2 sm:mb-3 leading-tight">
                         Temukan Kacamata yang Sesuai dengan Gaya dan Kebutuhan Anda
                     </h1>
-<p class="font-body-lg text-xs sm:text-sm text-on-surface-variant mb-6 leading-relaxed">
+<p class="font-body-lg text-xs sm:text-sm text-on-surface-variant mb-5 leading-relaxed">
                         Koleksi frame pilihan dari berbagai brand ternama serta house brand kami, <strong>Good Perpouse</strong>. Kurasi premium untuk kenyamanan visual maksimal.
                     </p>
-<div class="flex flex-wrap gap-3">
-<a class="btn-shimmer bg-primary text-on-primary px-6 sm:px-8 py-2.5 sm:py-3 text-xs font-semibold tracking-wider uppercase rounded-lg hover:bg-primary-container hover:text-primary transition-all duration-300 hover:-translate-y-0.5 shadow-md block" href="catalogue.html">Lihat Koleksi</a>
-<a class="border border-primary text-primary px-6 sm:px-8 py-2.5 sm:py-3 text-xs font-semibold tracking-wider uppercase rounded-lg hover:bg-surface-container-low transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-1.5 group/wa" href="https://wa.me/628123456789" target="_blank"><span class="material-symbols-outlined text-[16px] transition-transform duration-300 group-hover/wa:rotate-12">chat</span>Konsultasi WA</a>
+<div class="flex flex-wrap gap-2.5">
+<a class="btn-shimmer bg-primary text-on-primary px-5 sm:px-6 py-2 sm:py-2.5 text-xs font-semibold tracking-wider uppercase rounded-lg hover:bg-primary-container hover:text-primary transition-all duration-300 hover:-translate-y-0.5 shadow-md block" href="catalogue.html">Lihat Koleksi</a>
+<a class="border border-primary text-primary px-5 sm:px-6 py-2 sm:py-2.5 text-xs font-semibold tracking-wider uppercase rounded-lg hover:bg-surface-container-low transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-1.5 group/wa" href="https://wa.me/628123456789" target="_blank"><span class="material-symbols-outlined text-[16px] transition-transform duration-300 group-hover/wa:rotate-12">chat</span>Konsultasi WA</a>
 </div>
 </div>
 </div>
 </section>
 <!-- Brand Collection Section -->
-<section class="py-10 sm:py-14 px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
+<section class="py-6 sm:py-8 px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
 <div class="text-center mb-8 sm:mb-10 reveal-up">
 <span class="text-[11px] font-bold text-primary tracking-[0.2em] uppercase block mb-1">The Curation</span>
 <h2 class="font-headline-lg text-2xl sm:text-3xl text-primary font-light">Pilihan Brand Kami</h2>
