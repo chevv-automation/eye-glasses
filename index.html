@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GOODPERPOUSE - Modern Eyewear for Community</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "outline": "#73796f",
+                    "primary-fixed": "#caecbc",
+                    "on-tertiary-fixed": "#002109",
+                    "surface-bright": "#faf9f7",
+                    "on-secondary-container": "#716252",
+                    "tertiary-fixed": "#66ff8e",
+                    "outline-variant": "#c3c8bd",
+                    "secondary": "#6b5c4c",
+                    "inverse-surface": "#2f3130",
+                    "surface": "#faf9f7",
+                    "primary-container": "#4a6741",
+                    "tertiary-fixed-dim": "#3de273",
+                    "surface-dim": "#dadad8",
+                    "surface-container-low": "#f4f3f1",
+                    "surface-container-highest": "#e3e2e0",
+                    "on-primary-fixed-variant": "#324e2a",
+                    "surface-container-high": "#e9e8e6",
+                    "on-background": "#1a1c1b",
+                    "on-surface-variant": "#434840",
+                    "secondary-container": "#f4dfcb",
+                    "background": "#faf9f7",
+                    "on-secondary-fixed-variant": "#524436",
+                    "primary-fixed-dim": "#afd0a1",
+                    "on-tertiary-fixed-variant": "#005322",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#f4dfcb",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-primary-container": "#c2e4b4",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-variant": "#e3e2e0",
+                    "primary": "#334f2b",
+                    "on-tertiary-container": "#57f785",
+                    "on-primary-fixed": "#062104",
+                    "surface-tint": "#496640",
+                    "on-surface": "#1a1c1b",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#006f30",
+                    "on-secondary-fixed": "#241a0e",
+                    "inverse-primary": "#afd0a1",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#005423",
+                    "inverse-on-surface": "#f1f1ef",
+                    "surface-container": "#efeeec",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed-dim": "#d7c3b0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "stack-lg": "48px",
+                    "base": "8px",
+                    "container-max": "1200px",
+                    "margin-desktop": "40px",
+                    "margin-mobile": "20px",
+                    "stack-md": "24px",
+                    "stack-sm": "12px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Montserrat"],
+                    "headline-xl": ["Montserrat"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .product-card-shadow {
+            box-shadow: 0px 4px 20px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .product-card-shadow:hover {
+            box-shadow: 0px 8px 30px rgba(0,0,0,0.08);
+            transform: translateY(-4px);
+        }
+        .active-nav-border {
+            border-bottom: 2px solid #334f2b;
+        }
+        /* Performant GPU-Accelerated Micro Animations */
+        .anim-btn {
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, background-color 0.2s ease, color 0.2s ease;
+            will-change: transform;
+        }
+        .anim-btn:hover {
+            transform: translateY(-2px) scale(1.025);
+            box-shadow: 0 10px 20px -10px rgba(51, 79, 43, 0.35);
+        }
+        .anim-btn:active {
+            transform: translateY(0) scale(0.96);
+        }
+        .anim-card {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+            will-change: transform;
+        }
+        .anim-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.12);
+        }
+        /* Floating / Levitation Animation */
+        @keyframes floatSlow {
+            0%, 100% { transform: translate3d(0, 0, 0); }
+            50% { transform: translate3d(0, -7px, 0); }
+        }
+        .animate-float {
+            animation: floatSlow 4s ease-in-out infinite;
+            will-change: transform;
+        }
+        /* Scroll Reveal (GPU Composited) */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translate3d(0, 24px, 0);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-on-scroll.revealed {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar (Shared Component) -->
+<header class="sticky top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 max-w-container-max mx-auto bg-surface/95 shadow-sm backdrop-blur-md">
+<a href="index.html" class="font-headline-md text-headline-md font-bold text-primary tracking-tight">GOODPERPOUSE</a>
+<nav class="hidden md:flex gap-gutter items-center">
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1 hover:text-primary transition-colors duration-200" href="#koleksi">Koleksi</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#lensa">Lensa</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#promo">Promo</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#hubungi">Hubungi Kami</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="anim-btn material-symbols-outlined text-primary p-2 rounded-full hover:bg-surface-container-low">search</button>
+<a class="anim-btn hidden md:flex items-center gap-2 bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md" href="https://wa.me/628123456789">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+                Pesan WhatsApp
+            </a>
+<button class="anim-btn md:hidden material-symbols-outlined text-primary p-2">menu</button>
+</div>
+</header>
+<main>
+<!-- Section 1: Hero -->
+<section class="relative w-full min-h-[819px] flex flex-col md:flex-row items-center justify-between overflow-hidden px-margin-mobile md:px-margin-desktop py-stack-lg max-w-container-max mx-auto gap-gutter">
+<div class="flex-1 space-y-stack-md z-10">
+<span class="inline-block px-4 py-1.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-md">Modern Indonesian Eyewear</span>
+<h1 class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-primary leading-tight">
+                    Temukan Frame yang <br class="hidden md:block"/> Cocok untuk Gaya Kamu
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                    Koleksi kacamata stylish dengan harga terjangkau. Kualitas lokal yang dirancang untuk mendukung gaya hidup komunitas kreatif Indonesia.
+                </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<a class="anim-btn inline-flex items-center justify-center px-8 py-4 bg-primary text-on-primary rounded-xl font-label-md text-lg shadow-md" href="#koleksi">
+                        Lihat Koleksi
+                    </a>
+<button class="anim-btn flex items-center gap-2 px-8 py-4 bg-secondary-container text-on-secondary-container rounded-xl font-label-md text-lg">
+<span class="material-symbols-outlined">chat</span>
+                        Pesan WhatsApp
+                    </button>
+</div>
+</div>
+<div class="flex-1 relative w-full h-[400px] md:h-[600px] rounded-3xl overflow-hidden shadow-xl">
+<img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" data-alt="A candid, high-quality photograph of a stylish young Indonesian woman smiling warmly, wearing elegant tortoiseshell round-frame glasses. She is standing in a brightly lit, modern minimalist cafe with warm wooden textures and soft green plants in the background. The lighting is soft and golden, highlighting the clear lenses and premium texture of the eyewear, creating a welcoming and fashionable light-mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfECXBIGSjxedDH_wyRvO7N8jI55UAGHUkK5Ye4Eo6mNprwNkmztH_NZZIsoHhS-ulJ8AvS3VWH09UDEs5Ytx_V_4nQf2HNozGR69qayCIUMafstKWVjCcLToc24EjyQyutCHgifcnAc6MfM06P7As7arxTfFUEueZdms8OszQPdNtydmSuEHmc6531_0QZb_7VEVFhnFkxeVNduRHp1LJ7sIWnjveNdC55uCUd6ohq6FSChYrO5eUgQ"/>
+<div class="animate-float absolute bottom-6 left-6 right-6 p-4 bg-surface/80 backdrop-blur-md rounded-2xl flex items-center gap-4 shadow-lg border border-white/40">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">verified</span>
+</div>
+<div>
+<p class="font-label-md text-primary">Kualitas Terjamin</p>
+<p class="text-xs text-on-surface-variant">Frame tahan lama &amp; lensa presisi</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Product Catalog (Bento-ish Grid) -->
+<section class="w-full py-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto" id="koleksi">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-stack-lg gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-2">Koleksi Terpopuler</h2>
+<p class="text-on-surface-variant max-w-md">Pilihan terbaik untuk melengkapi penampilan harianmu dengan kenyamanan maksimal.</p>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+<button class="filter-chip anim-btn px-6 py-2 rounded-full bg-primary text-on-primary font-label-md whitespace-nowrap">Semua</button>
+<button class="filter-chip anim-btn px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md whitespace-nowrap">Pria</button>
+<button class="filter-chip anim-btn px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md whitespace-nowrap">Wanita</button>
+<button class="filter-chip anim-btn px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md whitespace-nowrap">Promo</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Product Card 1 -->
+<div class="anim-card reveal-on-scroll product-card-shadow bg-surface-container-lowest rounded-2xl overflow-hidden group">
+<a class="block relative h-64 bg-secondary-container/30" href="detail.html?id=urban-noir">
+<img class="w-full h-full object-contain p-8 group-hover:scale-110 transition-transform duration-500 cubic-bezier(0.16, 1, 0.3, 1)" data-alt="Close-up product photography of minimalist black acetate square-frame glasses for men. The frames are presented on a soft beige textured background with professional studio lighting that emphasizes the clean lines and polished finish. The mood is modern, crisp, and high-end retail, following the brand's sage green and warm neutral palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw8jmox6IhPpJJszZtgp6L1NlrKfg5zg7_-hTa24gI0AJ6Mk0-oPd1JHmxzqvyEbdL3kveZMqmElm6h7JlvNinOokcRL2pXpVkW0zl-jtTv3A8eawpvAbt5WUecE8tErc1J5IAq53O3JS5G0ID-d9pjORceQ7Qx54RzvWBNkzFLmuRpwlRnyjU7EgQU3BmD4uKQ_R6Q3XtjHuagS-wSx0R55KDnGbp2qj_165C5zF9GFcRUjO30-HfRg"/>
+<span class="absolute top-4 right-4 bg-primary text-on-primary text-[10px] font-bold px-2 py-1 rounded">NEW</span>
+</a>
+<div class="p-stack-sm space-y-2">
+<a class="block hover:text-primary transition-colors" href="detail.html?id=urban-noir">
+<h3 class="font-label-md text-on-surface">Frame Urban Pria - Noir</h3>
+</a>
+<p class="text-primary font-bold">Rp 150.000</p>
+<div class="grid grid-cols-2 gap-2 pt-1">
+<a class="anim-btn flex items-center justify-center gap-1.5 py-2.5 rounded-lg border border-primary text-primary font-label-md text-xs sm:text-sm" href="detail.html?id=urban-noir">
+<span class="material-symbols-outlined text-sm">visibility</span>
+                            Lihat Detail
+                        </a>
+<a class="anim-btn flex items-center justify-center gap-1.5 py-2.5 rounded-lg bg-primary text-on-primary font-label-md text-xs sm:text-sm" href="https://wa.me/628123456789?text=Halo%20GOODPERPOUSE,%20saya%20tertarik%20pesan%20Frame%20Urban%20Pria%20-%20Noir">
+<span class="material-symbols-outlined text-sm">chat</span>
+                            WhatsApp
+                        </a>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="anim-card reveal-on-scroll delay-100 product-card-shadow bg-surface-container-lowest rounded-2xl overflow-hidden group">
+<a class="block relative h-64 bg-secondary-container/30" href="detail.html?id=cat-eye-rose">
+<img class="w-full h-full object-contain p-8 group-hover:scale-110 transition-transform duration-500 cubic-bezier(0.16, 1, 0.3, 1)" data-alt="A stylish pair of cat-eye frames for women in a soft blush pink transparent material. The eyewear is placed artistically on a light sage green surface with delicate shadows. The scene is bright and airy, reflecting a chic and approachable aesthetic for young professionals. High-clarity lighting highlights the transparent details of the frame." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC12oO07BWF675Tq7K_6rnb00bndYDzjvYl5QPj1PIYBjAQPWGeM526uC5tDx04hx9ARLa9vdSi061pu1_S4lQeCMlGciYKbUVosnB8KhaHlmWVcLg3bm3YruQ-XFpRxKssq2GKE_zt_zCvEw-OJsKM6wcZcqOcdT-LdARm-BpNLq_7OrAKoAJ2EEXzxVeLlXk-PGM4uTEUB6X4u9x66SgIOSdtzUt781cK1hoMFaAWnhUHGxtnQjUtDg"/>
+</a>
+<div class="p-stack-sm space-y-2">
+<a class="block hover:text-primary transition-colors" href="detail.html?id=cat-eye-rose">
+<h3 class="font-label-md text-on-surface">Graceful Cat-Eye - Rose</h3>
+</a>
+<p class="text-primary font-bold">Rp 175.000</p>
+<div class="grid grid-cols-2 gap-2 pt-1">
+<a class="anim-btn flex items-center justify-center gap-1.5 py-2.5 rounded-lg border border-primary text-primary font-label-md text-xs sm:text-sm" href="detail.html?id=cat-eye-rose">
+<span class="material-symbols-outlined text-sm">visibility</span>
+                            Lihat Detail
+                        </a>
+<a class="anim-btn flex items-center justify-center gap-1.5 py-2.5 rounded-lg bg-primary text-on-primary font-label-md text-xs sm:text-sm" href="https://wa.me/628123456789?text=Halo%20GOODPERPOUSE,%20saya%20tertarik%20pesan%20Graceful%20Cat-Eye%20-%20Rose">
+<span class="material-symbols-outlined text-sm">chat</span>
+                            WhatsApp
+                        </a>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="anim-card reveal-on-scroll delay-200 product-card-shadow bg-surface-container-lowest rounded-2xl overflow-hidden group">
+<a class="block relative h-64 bg-secondary-container/30" href="detail.html?id=metal-aviator">
+<img class="w-full h-full object-contain p-8 group-hover:scale-110 transition-transform duration-500 cubic-bezier(0.16, 1, 0.3, 1)" data-alt="Professional eyewear photography showing classic aviator-style metal frames with silver finish. The glasses are staged in a bright, clean light-mode environment with subtle reflections on the lenses. The focus is sharp on the bridge and temple details, emphasizing the quality craftsmanship and modern Indonesian style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAm0fr_JALgmUFJEX55-IR9J1duInRDufbpKS3xPwGHnewFuMjFr9lVf1x9VuZOCz24Byf4e9aClDGlmqIdXNd5HR5fBbw0GvDgyVwm206WgVuIYkc9PFK2Na1c4YfKN5fC1HOQPaDvMRkRNmMovsg1Nv8ZwLvk8U0MtZXDaIyAi77wgDmRDsxgdq5lxYlr3MQ3Im3IusletVnlVeDNU9kE0pf6P_BOferrXRXRt6F6g4or-UBFntNL3Q"/>
+<span class="absolute top-4 right-4 bg-error text-on-error text-[10px] font-bold px-2 py-1 rounded">HOT</span>
+</a>
+<div class="p-stack-sm space-y-2">
+<a class="block hover:text-primary transition-colors" href="detail.html?id=metal-aviator">
+<h3 class="font-label-md text-on-surface">Metal Aviator - Silver</h3>
+</a>
+<p class="text-primary font-bold">Rp 210.000</p>
+<div class="grid grid-cols-2 gap-2 pt-1">
+<a class="anim-btn flex items-center justify-center gap-1.5 py-2.5 rounded-lg border border-primary text-primary font-label-md text-xs sm:text-sm" href="detail.html?id=metal-aviator">
+<span class="material-symbols-outlined text-sm">visibility</span>
+                            Lihat Detail
+                        </a>
+<a class="anim-btn flex items-center justify-center gap-1.5 py-2.5 rounded-lg bg-primary text-on-primary font-label-md text-xs sm:text-sm" href="https://wa.me/628123456789?text=Halo%20GOODPERPOUSE,%20saya%20tertarik%20pesan%20Metal%20Aviator%20-%20Silver">
+<span class="material-symbols-outlined text-sm">chat</span>
+                            WhatsApp
+                        </a>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="anim-card reveal-on-scroll delay-300 product-card-shadow bg-surface-container-lowest rounded-2xl overflow-hidden group">
+<a class="block relative h-64 bg-secondary-container/30" href="detail.html?id=essential-round">
+<img class="w-full h-full object-contain p-8 group-hover:scale-110 transition-transform duration-500 cubic-bezier(0.16, 1, 0.3, 1)" data-alt="Modern translucent grey round frames made from sustainable lightweight acetate. The product is displayed in a minimalist white studio setting with soft ambient shadows. The lighting is high-key and inviting, perfect for a community-centric retail brand that values modern digital commerce aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCv-iZ8lrcjAptEVeJF-C64ENXfET705uHJ-OpBaxhzcZCcj9TNFNTB_aAHsICGVHS1e0zKy-PbsnW5R5ifIDV-9YL3aOqp34veqW15-GVeG_N-xA_0ijXuUK4EDTJlz3Fc67WFJpyNaep04HJjSNpt0nagoPURw2sdg2QX1lvCUwWgVhbCL0zYxYSZH_OgJkBOJJwbwktXrHzhS2Posa4ohuz4SOxViNOcbsHukyHmzxS9ntRU612qg"/>
+</a>
+<div class="p-stack-sm space-y-2">
+<a class="block hover:text-primary transition-colors" href="detail.html?id=essential-round">
+<h3 class="font-label-md text-on-surface">Essential Round - Mist</h3>
+</a>
+<p class="text-primary font-bold">Rp 145.000</p>
+<div class="grid grid-cols-2 gap-2 pt-1">
+<a class="anim-btn flex items-center justify-center gap-1.5 py-2.5 rounded-lg border border-primary text-primary font-label-md text-xs sm:text-sm" href="detail.html?id=essential-round">
+<span class="material-symbols-outlined text-sm">visibility</span>
+                            Lihat Detail
+                        </a>
+<a class="anim-btn flex items-center justify-center gap-1.5 py-2.5 rounded-lg bg-primary text-on-primary font-label-md text-xs sm:text-sm" href="https://wa.me/628123456789?text=Halo%20GOODPERPOUSE,%20saya%20tertarik%20pesan%20Essential%20Round%20-%20Mist">
+<span class="material-symbols-outlined text-sm">chat</span>
+                            WhatsApp
+                        </a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Gallery -->
+<section class="bg-secondary-container/30 py-stack-lg">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="text-center mb-stack-lg">
+<h2 class="font-headline-lg text-primary">Inspirasi Gaya</h2>
+<p class="text-on-surface-variant">Bagaimana pelanggan kami mengekspresikan diri</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="h-80 rounded-2xl overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A candid photo of a trendy young man wearing round tortoiseshell glasses, reading a book in a modern bookstore. The lighting is soft, cinematic, and warm. The style is lifestyle-oriented, showcasing the eyewear in a casual everyday setting with a focus on intellectual and creative vibes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCci0PSCgaMnKnuR86bo1zp-69k__PRsiQrpl3TFOA9KM_DVH12kG6z_2Y5TP0EXsvg9GFijGBq9cD6O9WvVKpCwDah5pokM7bMi_dTGdg7n5Q06HUm5eVhVUCBWzewLWkhGjC8a7zonk0uFmuz0TEaxfkoh4HwxGYqL3ZjOuJWcI9UMJ2LoZwHoPnC12xXfN7Nzgzn-kj4rwHm5N5ruBxIdPSmYrBxwWeV0aPgq4is3OT_RTb2713sjA"/>
+</div>
+<div class="h-80 md:h-96 rounded-2xl overflow-hidden mt-8 md:mt-0">
+<img class="w-full h-full object-cover" data-alt="A stylish young Indonesian woman in a creative workspace, wearing oversized transparent frames. She is looking at her laptop and smiling. The environment is a bright sunlit studio with plants and art supplies. High-clarity photography capturing an authentic moment of productivity and style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbHVpHn49kl9ZudMSDiKSNrPHAeRsbpwv6udmLvx5PF4Bv6ixxSSFaImEq_dHLNtfGR9FAKN1rVbWv1gwe4tu8sXef4SHhSkY5pNQYzaRY2gF2dP9txRmGyH8seFPfe5lsl71lzhTMLBmzS3xuxCAZGodsaJ04aRcjQUfwLm8t7PZlAzVFgIz0-Qvga2bF-3bTBSlJ4LT7Z8JiCa536FQ6M9rWBzu7CqwCOYtFrv1w5Kr6afs740qj3g"/>
+</div>
+<div class="h-80 rounded-2xl overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Outdoor lifestyle shot of a group of diverse Indonesian friends laughing together in a park. One person is wearing classic black frames that match their casual streetwear. The mood is joyful, community-centric, and bright with natural afternoon sunlight filtering through the trees." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRhJAgeEYX37-_j7eVlvmyok172HStkoG9vOrXcyCv5VL-QgzItrl0-COCgMDl8DrUp-aFuNLmluyHMhWD7hy79XlVZDV3mFNNBcBMqm_vW-p5S37BIZuQc4QMxLsWuknpv2kdnJg6BxY75D6lcV-Le9OJITIzjgo6Va6yXEanhJr9HzYKdK76tTAWT-kCMGxe2GetNTPGjjJQV-x77d8Dbp3cgrh4cqRQ-Ztzr9tKHmOlIQ_1BSIQhw"/>
+</div>
+<div class="h-80 md:h-96 rounded-2xl overflow-hidden mt-8 md:mt-0">
+<img class="w-full h-full object-cover" data-alt="Close-up lifestyle portrait of a creative professional wearing thin gold metal frame glasses. The background is a blurred cityscape at dusk, with soft bokeh lights. The lighting highlights the elegance of the frames and the approachable warmth of the brand's aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4_ZBGpYQv8izxm2L1PKk4FCjU70YPibnAbxqTHI60caBYwE99gTJwgvmgQecb2I_tDpXegOOS2l50lY71YnQPIcaimdH-NxBJIJwZOI4LFOyEZKdkOTSlUfmbgZMMCnVskuoauI8s_KwI5I5ona-gblnOR558MaxQrs2wlndycJr_DRLOuo2YvPtTGImCGdor-kc98kGTdTNv09Z1jk4w9APNL9USso03Z5Z4KjyPWickyaYL5UsTkg"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: About -->
+<section class="py-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-stack-lg">
+<div class="flex-1">
+<div class="relative w-full aspect-square max-w-md mx-auto">
+<div class="absolute inset-0 bg-primary-fixed rounded-[40px] rotate-3 -z-10"></div>
+<img class="w-full h-full object-cover rounded-[40px] shadow-lg" data-alt="A friendly, warmly lit interior shot of a boutique eyewear store in Indonesia. The shop features clean wooden shelves, soft sage green accents, and a minimal, organized layout. A friendly staff member is seen in the background assisting a customer. The overall feeling is approachable, tidy, and modern-boutique." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRyr1i12Lrfsygp-cACPYvZzHo56G0f_dTGEgYAG8fBuOfKFoXSjqk-HqKiMv0aTC7vJ9eaPgSaC2znoyO7JBMCBdn-ttQ1xkvSyOhAzgD1G7Tb3xzQCxfRZJu0sOfDT7WEurGJccbmwOWHwrDC9RDV5LksKwJgaRBdy73neMF5ofGGDH-08aVpG3WeYzRBkWg7Zm7azk5kJY5rYxvlhVrNqj_M4RZCIxXl_t13Wyv6HjayPbRX4Bwcw"/>
+</div>
+</div>
+<div class="flex-1 space-y-stack-sm">
+<h2 class="font-headline-lg text-primary">Tentang Kami</h2>
+<p class="font-body-lg text-on-surface-variant">
+                    GOODPERPOUSE lahir dari keinginan sederhana: memberikan akses kepada kacamata yang tidak hanya fungsional, tapi juga melambangkan identitas diri yang stylish.
+                </p>
+<p class="text-on-surface-variant">
+                    Kami percaya bahwa setiap orang berhak memiliki frame berkualitas tanpa harus merogoh kocek terlalu dalam. Dengan kurasi koleksi yang modern dan layanan yang ramah layaknya sahabat, kami siap membantumu melihat dunia dengan lebih jernih dan percaya diri.
+                </p>
+<div class="grid grid-cols-2 gap-4 pt-4">
+<div class="p-4 bg-surface-container rounded-xl">
+<h4 class="font-bold text-primary text-xl">500+</h4>
+<p class="text-sm text-on-surface-variant">Model Frame</p>
+</div>
+<div class="p-4 bg-surface-container rounded-xl">
+<h4 class="font-bold text-primary text-xl">10k+</h4>
+<p class="text-sm text-on-surface-variant">Pelanggan Puas</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Contact -->
+<section class="py-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto" id="hubungi">
+<div class="bg-primary-container p-stack-lg rounded-[32px] text-on-primary-container flex flex-col md:flex-row items-center gap-stack-lg relative overflow-hidden">
+<!-- Decorative element -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full -mr-32 -mt-32"></div>
+<div class="flex-1 z-10 text-center md:text-left">
+<h2 class="font-headline-lg text-white mb-4">Butuh Rekomendasi?</h2>
+<p class="text-primary-fixed/80 mb-8 max-w-md mx-auto md:mx-0">Konsultasikan kebutuhan lensa dan pilihan framemu langsung melalui WhatsApp. Admin kami siap membantu dengan ramah.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+<a class="flex items-center justify-center gap-3 px-8 py-4 bg-on-tertiary-container text-tertiary-container rounded-full font-bold hover:scale-105 transition-transform" href="#">
+<span class="material-symbols-outlined">chat</span>
+                            Hubungi WhatsApp
+                        </a>
+<a class="flex items-center justify-center gap-3 px-8 py-4 bg-white/10 text-white border border-white/20 rounded-full font-bold backdrop-blur-sm hover:bg-white/20 transition-all" href="#">
+<span class="material-symbols-outlined">camera_alt</span>
+                            Follow Instagram
+                        </a>
+</div>
+</div>
+<div class="flex-1 w-full max-w-md z-10">
+<div class="bg-surface p-6 rounded-2xl shadow-xl space-y-4">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">location_on</span>
+</div>
+<div>
+<p class="font-bold text-primary">Kunjungi Store Kami</p>
+<p class="text-sm text-on-surface-variant">Jl. Senopati No. 45, Jakarta Selatan, Indonesia</p>
+</div>
+</div>
+<div class="w-full h-48 bg-surface-container rounded-xl overflow-hidden grayscale hover:grayscale-0 transition-all cursor-pointer">
+<img class="w-full h-full object-cover" data-location="Jakarta" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBScE6k9Ts3W_mjkTPy6w185zSPeP-eR1H5RiPXPLPpICKshkgtmo_1mxzPjMKXjo9SPUgEvqizLzPtJD9tFIJpGMSNuyPq8ITJDrwMoPP4o8iTv-Noife_gjsD0yKI-Blb83yM-vI39IgPVcXye8EVoQeIgO5r4EviQpA7sBCamTm2Qsti0sd8HSFxpkT6hzLngPTds7lahSc5HCLIPMFrBFYjwiAIDRQenBYDOOew1u4RQKKRSyJeDw"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="w-full py-stack-lg px-margin-mobile md:px-margin-desktop bg-secondary-container text-on-secondary-container max-w-container-max mx-auto rounded-t-[40px] mt-stack-lg">
+<div class="flex flex-col md:flex-row justify-between items-start gap-gutter mb-stack-lg">
+<div class="space-y-4 max-w-sm">
+<div class="font-headline-md text-headline-md font-bold text-primary">GOODPERPOUSE</div>
+<p class="font-body-md text-body-md text-on-secondary-fixed-variant">Memberikan solusi penglihatan modern yang stylish dan terjangkau untuk seluruh komunitas di Indonesia.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined">camera_alt</span></a>
+<a class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined">chat</span></a>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-stack-md w-full md:w-auto">
+<div>
+<h5 class="font-label-md text-primary mb-4">Navigasi</h5>
+<ul class="space-y-2 text-label-sm">
+<li><a class="hover:text-primary transition-colors" href="#koleksi">Koleksi</a></li>
+<li><a class="hover:text-primary transition-colors" href="#lensa">Lensa</a></li>
+<li><a class="hover:text-primary transition-colors" href="#promo">Promo</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-md text-primary mb-4">Bantuan</h5>
+<ul class="space-y-2 text-label-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Store Locations</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Kebijakan Privasi</a></li>
+</ul>
+</div>
+<div class="col-span-2 md:col-span-1">
+<h5 class="font-label-md text-primary mb-4">Hubungi</h5>
+<ul class="space-y-2 text-label-sm">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">mail</span> halo@goodperpouse.id</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">call</span> +62 812-3456-789</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-on-secondary-container/10 flex flex-col md:flex-row justify-between items-center gap-4 text-label-sm">
+<p>© 2024 GOODPERPOUSE. Modern Eyewear for Community.</p>
+<div class="flex gap-6">
+<a class="hover:underline" href="#">Instagram</a>
+<a class="hover:underline" href="#">WhatsApp</a>
+</div>
+</div>
+</footer>
+<!-- Micro-interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Sticky Header interaction
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    header.classList.add('shadow-md');
+                } else {
+                    header.classList.remove('shadow-md');
+                }
+            }, { passive: true });
+
+            // Performant GPU-Accelerated Scroll Reveal via IntersectionObserver
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -60px 0px',
+                threshold: 0.1
+            };
+            const scrollObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+                scrollObserver.observe(el);
+            });
+
+            // Interactive Filter Chip Micro-interaction
+            const filterChips = document.querySelectorAll('.filter-chip');
+            filterChips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    filterChips.forEach(c => {
+                        c.classList.remove('bg-primary', 'text-on-primary');
+                        c.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+                    });
+                    chip.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+                    chip.classList.add('bg-primary', 'text-on-primary');
+                });
+            });
+        });
+    </script>
+</body></html>
