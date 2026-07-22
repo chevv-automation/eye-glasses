@@ -1,0 +1,74 @@
+{
+  "redirects": [
+    {
+      "source": "/admin",
+      "destination": "/cms/login.html",
+      "permanent": false
+    },
+    {
+      "source": "/admin/login",
+      "destination": "/cms/login.html",
+      "permanent": false
+    },
+    {
+      "source": "/admin/dashboard",
+      "destination": "/cms/index.html",
+      "permanent": false
+    },
+    {
+      "source": "/admin/products",
+      "destination": "/cms/katalog.html",
+      "permanent": false
+    },
+    {
+      "source": "/admin/products/create",
+      "destination": "/cms/tambah-katalog.html",
+      "permanent": false
+    },
+    {
+      "source": "/admin/marketing",
+      "destination": "/cms/promo.html",
+      "permanent": false
+    },
+    {
+      "source": "/admin/promos",
+      "destination": "/cms/promo.html",
+      "permanent": false
+    },
+    {
+      "source": "/admin/banners",
+      "destination": "/cms/konten.html",
+      "permanent": false
+    },
+    {
+      "source": "/admin/content",
+      "destination": "/cms/konten.html",
+      "permanent": false
+    },
+    {
+      "source": "/admin/articles",
+      "destination": "/cms/konten.html",
+      "permanent": false
+    },
+    {
+      "source": "/admin/testimonials",
+      "destination": "/cms/konten.html",
+      "permanent": false
+    },
+    {
+      "source": "/admin/faq",
+      "destination": "/cms/konten.html",
+      "permanent": false
+    },
+    {
+      "source": "/admin/about-us",
+      "destination": "/cms/konten.html",
+      "permanent": false
+    },
+    {
+      "source": "/admin/settings",
+      "destination": "/cms/settings.html",
+      "permanent": false
+    }
+  ]
+}

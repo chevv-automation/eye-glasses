@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="id" class="light">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Citra Prima - Manajemen Konten & Banner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-container": "#353a3f",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-secondary-container": "#556957",
+                        "surface-variant": "#e1e3e4",
+                        "primary-fixed-dim": "#b8ccb1",
+                        "inverse-primary": "#b8ccb1",
+                        "secondary-fixed": "#d1e9d1",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#dfe3e9",
+                        "background": "#f8f9fa",
+                        "on-surface-variant": "#444841",
+                        "on-error": "#ffffff",
+                        "surface": "#f8f9fa",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#191c1d",
+                        "on-tertiary-fixed": "#171c20",
+                        "on-surface": "#191c1d",
+                        "secondary-container": "#d1e9d1",
+                        "primary-fixed": "#d4e8cc",
+                        "on-primary-fixed-variant": "#3a4b36",
+                        "surface-bright": "#f8f9fa",
+                        "primary-container": "#2d3e2a",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-dim": "#d9dadb",
+                        "inverse-surface": "#2e3132",
+                        "on-primary-container": "#95a98f",
+                        "tertiary": "#202429",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#0f1f0e",
+                        "on-tertiary-fixed-variant": "#43474c",
+                        "on-secondary-fixed": "#0d1f11",
+                        "on-tertiary-container": "#9fa4a9",
+                        "secondary": "#4f6351",
+                        "surface-tint": "#51634d",
+                        "outline": "#747871",
+                        "surface-container-high": "#e7e8e9",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#182816",
+                        "surface-container": "#edeeef",
+                        "on-secondary-fixed-variant": "#384b3a",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c4c8bf",
+                        "surface-container-low": "#f3f4f5",
+                        "tertiary-fixed-dim": "#c3c7cd",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#b6ccb6"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.125rem",
+                        lg: "0.25rem",
+                        xl: "0.5rem",
+                        full: "0.75rem"
+                    },
+                    spacing: {
+                        "container-max": "1440px",
+                        "sidebar-width": "260px",
+                        "margin-desktop": "32px",
+                        "margin-mobile": "16px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        gutter: "24px"
+                    },
+                    fontFamily: {
+                        "headline-sm": ["Montserrat"],
+                        "title-lg": ["Montserrat"],
+                        "body-sm": ["Montserrat"],
+                        "label-md": ["Montserrat"],
+                        "label-sm": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-md": ["Montserrat"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #f8f9fa; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #c4c8bf; border-radius: 10px; }
+        .page-enter {
+            animation: pageFadeInUp 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes pageFadeInUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .drag-handle { cursor: grab; }
+        .drag-handle:active { cursor: grabbing; }
+        @keyframes toastSlideIn {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .toast-animate {
+            animation: toastSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .skeleton-shimmer {
+            background: linear-gradient(90deg, #edeeef 25%, #f8f9fa 50%, #edeeef 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased overflow-x-hidden">
+
+<!-- Mobile Backdrop -->
+<div id="sidebarBackdrop" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden backdrop-blur-sm transition-opacity duration-300 opacity-0"></div>
+
+<!-- SideNavBar (Standardized Across All Pages) -->
+<aside id="sidebarDrawer" class="fixed left-0 top-0 h-full w-[260px] bg-primary flex flex-col p-stack-md z-50 -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out shadow-xl md:shadow-none">
+    <div class="flex items-center justify-between mb-8 px-2">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-secondary-container rounded-lg flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">token</span>
+            </div>
+            <div>
+                <h1 class="text-on-primary font-title-lg text-title-lg font-bold leading-tight tracking-tight">Citra Prima</h1>
+                <p class="text-on-primary opacity-60 font-label-sm text-label-sm">Signature CMS</p>
+            </div>
+        </div>
+        <button id="closeSidebarBtn" class="md:hidden text-on-primary/70 hover:text-on-primary p-1.5 rounded-lg hover:bg-primary-container min-w-[44px] min-h-[44px] flex items-center justify-center">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+    </div>
+
+    <nav class="flex-1 space-y-1.5 overflow-y-auto custom-scrollbar pr-1">
+        <!-- Dashboard -->
+        <a href="index.html" data-route="/admin/dashboard" class="flex items-center gap-3 px-4 py-3 text-on-primary opacity-75 hover:bg-primary-container hover:opacity-100 transition-all duration-150 rounded-lg hover:translate-x-1 min-h-[44px]">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="font-body-md text-body-md">Dashboard</span>
+        </a>
+
+        <!-- Katalog Produk -->
+        <a href="katalog.html" data-route="/admin/products" class="flex items-center gap-3 px-4 py-3 text-on-primary opacity-75 hover:bg-primary-container hover:opacity-100 transition-all duration-150 rounded-lg hover:translate-x-1 min-h-[44px]">
+            <span class="material-symbols-outlined">inventory_2</span>
+            <span class="font-body-md text-body-md">Katalog Produk</span>
+        </a>
+
+        <!-- Pemasaran with Accordion Sub-menu -->
+        <div>
+            <button onclick="toggleSubMenu('menuPemasaran')" class="w-full flex items-center justify-between px-4 py-3 text-on-primary opacity-75 hover:bg-primary-container hover:opacity-100 transition-all duration-150 rounded-lg min-h-[44px]">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">campaign</span>
+                    <span class="font-body-md text-body-md">Pemasaran</span>
+                </div>
+                <span id="icon-menuPemasaran" class="material-symbols-outlined text-[18px] rotate-180 transition-transform duration-200">expand_more</span>
+            </button>
+            <div id="menuPemasaran" class="pl-11 pr-2 py-1 space-y-1">
+                <a href="konten.html#banner" onclick="switchTab('banner')" data-route="/admin/banners" class="block py-2 px-3 bg-primary-container/60 text-on-primary font-bold rounded-md font-body-sm text-body-sm transition-colors min-h-[38px] flex items-center">Banner Website</a>
+                <a href="promo.html" data-route="/admin/promos" class="block py-2 px-3 text-on-primary opacity-60 hover:opacity-100 hover:bg-primary-container/50 rounded-md font-body-sm text-body-sm transition-colors min-h-[38px] flex items-center">Promo & Diskon</a>
+            </div>
+        </div>
+
+        <!-- Konten & Media with Accordion Sub-menu -->
+        <div>
+            <button onclick="toggleSubMenu('menuKonten')" class="w-full flex items-center justify-between px-4 py-3 text-on-primary opacity-75 hover:bg-primary-container hover:opacity-100 transition-all duration-150 rounded-lg min-h-[44px]">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">article</span>
+                    <span class="font-body-md text-body-md">Konten & Media</span>
+                </div>
+                <span id="icon-menuKonten" class="material-symbols-outlined text-[18px] rotate-180 transition-transform duration-200">expand_more</span>
+            </button>
+            <div id="menuKonten" class="pl-11 pr-2 py-1 space-y-1">
+                <a href="#articles" onclick="switchTab('articles')" data-route="/admin/articles" class="block py-2 px-3 text-on-primary opacity-60 hover:opacity-100 hover:bg-primary-container/50 rounded-md font-body-sm text-body-sm transition-colors min-h-[38px] flex items-center">Artikel & Blog</a>
+                <a href="#testimonials" onclick="switchTab('testimonials')" data-route="/admin/testimonials" class="block py-2 px-3 text-on-primary opacity-60 hover:opacity-100 hover:bg-primary-container/50 rounded-md font-body-sm text-body-sm transition-colors min-h-[38px] flex items-center">Testimoni</a>
+                <a href="#faq" onclick="switchTab('faq')" data-route="/admin/faq" class="block py-2 px-3 text-on-primary opacity-60 hover:opacity-100 hover:bg-primary-container/50 rounded-md font-body-sm text-body-sm transition-colors min-h-[38px] flex items-center">FAQ</a>
+                <a href="#about" onclick="switchTab('about')" data-route="/admin/about-us" class="block py-2 px-3 text-on-primary opacity-60 hover:opacity-100 hover:bg-primary-container/50 rounded-md font-body-sm text-body-sm transition-colors min-h-[38px] flex items-center">Tentang Kami</a>
+            </div>
+        </div>
+
+        <!-- Pengaturan -->
+        <a href="settings.html" data-route="/admin/settings" class="flex items-center gap-3 px-4 py-3 text-on-primary opacity-75 hover:bg-primary-container hover:opacity-100 transition-all duration-150 rounded-lg hover:translate-x-1 min-h-[44px]">
+            <span class="material-symbols-outlined">settings</span>
+            <span class="font-body-md text-body-md">Pengaturan</span>
+        </a>
+    </nav>
+
+    <div class="mt-auto pt-6 border-t border-on-primary/10">
+        <div class="flex items-center justify-between px-2">
+            <div class="flex items-center gap-3 overflow-hidden">
+                <div class="w-10 h-10 rounded-full bg-primary-fixed overflow-hidden border border-outline-variant shrink-0">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4RQRVoCdkZa3qhCvt2C16lgD9YUvgeyggpoMuYBrZ44GiXpf405enVO7xHSvddYfCcA20FxPxkooEWfofI4hlSpCX3eqWNOC9MoYvzIyWWY2AywaNOKtvHml2jyK5-_F2rMRrKiUMtVLHBFTzD6f2Sy6Xxe7qKpiHUCWwhoZuu3-JQjso84FJYFyCxV31rnA2Y5PRAIDqqZy4Sx6PeJ0myvW-vu7YUcK26pIsxS6dhhCwxIpGI5Bt-A" alt="Admin Avatar" class="w-full h-full object-cover"/>
+                </div>
+                <div class="overflow-hidden">
+                    <p class="font-label-md text-label-md text-on-primary truncate">Admin Prime</p>
+                    <p class="font-label-sm text-label-sm text-on-primary/60 truncate">Super Admin</p>
+                </div>
+            </div>
+            <a href="login.html" data-route="/admin/logout" title="Logout" class="p-2 text-on-primary opacity-70 hover:opacity-100 hover:bg-primary-container rounded-lg transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
+                <span class="material-symbols-outlined">logout</span>
+            </a>
+        </div>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<main class="ml-0 md:ml-[260px] min-h-screen flex flex-col relative transition-all duration-300">
+    <!-- TopNavBar Shell -->
+    <header class="flex justify-between items-center h-16 px-4 md:px-margin-desktop bg-surface border-b border-outline-variant sticky top-0 z-40">
+        <div class="flex items-center gap-3">
+            <button id="openSidebarBtn" class="md:hidden w-11 h-11 flex items-center justify-center rounded-lg text-on-surface hover:bg-surface-container-low transition-colors shrink-0">
+                <span class="material-symbols-outlined text-[24px]">menu</span>
+            </button>
+            <span class="font-headline-sm text-headline-sm text-primary font-bold">Manajemen Konten & Media</span>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button id="toggleSkeletonBtn" title="Simulasikan Loading Skeleton" class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-low transition-all">
+                <span class="material-symbols-outlined">sync</span>
+            </button>
+            <button onclick="triggerToast('Konten Berhasil Disimpan!')" class="bg-primary text-on-primary px-5 py-2 rounded-lg font-label-md text-label-md hover:opacity-90 transition-all active:scale-95 shadow-sm min-h-[44px] flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">add</span>
+                <span>Buat Baru</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Sub-Navigation Horizontal Tab Bar (Refactored for Layout Consistency) -->
+    <div class="bg-surface border-b border-outline-variant px-4 sm:px-6 md:px-margin-desktop overflow-x-auto">
+        <div class="flex items-center gap-2 sm:gap-6 min-w-max">
+            <button onclick="switchTab('banner')" id="btn-banner" class="tab-btn py-4 px-3 font-label-md text-label-md border-b-2 border-primary text-primary font-bold transition-all min-h-[44px] flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">view_carousel</span> Banner Website
+            </button>
+            <button onclick="switchTab('articles')" id="btn-articles" class="tab-btn py-4 px-3 font-label-md text-label-md border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-all min-h-[44px] flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">article</span> Artikel & Blog
+            </button>
+            <button onclick="switchTab('testimonials')" id="btn-testimonials" class="tab-btn py-4 px-3 font-label-md text-label-md border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-all min-h-[44px] flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">reviews</span> Testimoni Pelanggan
+            </button>
+            <button onclick="switchTab('faq')" id="btn-faq" class="tab-btn py-4 px-3 font-label-md text-label-md border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-all min-h-[44px] flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">quiz</span> FAQ & Bantuan
+            </button>
+            <button onclick="switchTab('about')" id="btn-about" class="tab-btn py-4 px-3 font-label-md text-label-md border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-all min-h-[44px] flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">business</span> Tentang Kami
+            </button>
+        </div>
+    </div>
+
+    <!-- Content Area (Page enter animations) -->
+    <section class="flex-1 overflow-y-auto p-4 sm:p-6 md:p-margin-desktop custom-scrollbar space-y-gutter">
+        
+        <!-- Skeleton State (Hidden by default) -->
+        <div id="skeletonContent" class="hidden space-y-6">
+            <div class="h-12 rounded-lg skeleton-shimmer"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="h-64 rounded-xl skeleton-shimmer"></div>
+                <div class="h-64 rounded-xl skeleton-shimmer"></div>
+            </div>
+        </div>
+
+        <!-- TAB 1: BANNER WEBSITE -->
+        <div id="panel-banner" class="tab-panel space-y-6 page-enter">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-surface-container-lowest border border-outline-variant p-4 rounded-xl">
+                <div>
+                    <h3 class="font-title-lg text-title-lg text-primary font-bold">Daftar Banner Hero Utama</h3>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">Seret ikon drag untuk mengatur urutan tampilan banner di beranda e-commerce.</p>
+                </div>
+                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full font-label-md text-label-md">3/5 Slot Terisi</span>
+            </div>
+
+            <!-- Banner Cards Grid (1 col mobile, 2 col desktop) -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Banner Item 1 -->
+                <div class="bg-white border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:border-primary/40 transition-all duration-200">
+                    <div class="p-4 bg-surface-container-low border-b border-outline-variant flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <span title="Seret untuk reorder" class="drag-handle material-symbols-outlined text-on-surface-variant hover:text-primary p-1 rounded min-h-[38px] min-w-[38px] flex items-center justify-center">drag_indicator</span>
+                            <span class="font-bold text-primary font-body-md">#1 • Koleksi Signature 2024</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded-full bg-green-100 text-green-700 font-label-sm font-bold">ACTIVE</span>
+                            <button class="text-on-surface-variant hover:text-primary p-1 min-h-[38px] min-w-[38px] flex items-center justify-center">
+                                <span class="material-symbols-outlined text-[20px]">edit</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4 space-y-4">
+                        <div class="aspect-[21/9] bg-surface-container rounded-lg overflow-hidden relative border border-outline-variant/40">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQKxeA5RYMvp0p8GwtWc4DS87cllKjBk5YGGUghnMHTYKDCFRScFC8TNOrok-vBTD4FII-kyPMtPIVKzgcVKpMH6pEbAX8JeMU64lw3SPlvvtLmp7x9kVWVVKm7cQNc5iy4dEze46gih3LHalLIzet07O8it-sNOPdwr_BeoIU8Y9ajPv9yn77W0zLQ-bgec__PxNNebw2f0GXT0_QBzRfFkn-wtym4BnD2IsdF2Y_LJJpjPcxcfLjEw" alt="Banner 1" class="w-full h-full object-cover"/>
+                            <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex flex-col justify-end p-4 text-white">
+                                <span class="font-label-sm text-[10px] uppercase tracking-wider text-secondary-fixed">New Arrival</span>
+                                <h4 class="font-headline-sm text-headline-sm font-bold leading-tight">Defining the Standard of Optical Excellence</h4>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-body-sm text-on-surface-variant pt-2 border-t border-outline-variant/50">
+                            <span>Link: `/catalogue.html`</span>
+                            <span>Periode: 1 Juli - 31 Desember 2026</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Banner Item 2 -->
+                <div class="bg-white border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:border-primary/40 transition-all duration-200">
+                    <div class="p-4 bg-surface-container-low border-b border-outline-variant flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <span title="Seret untuk reorder" class="drag-handle material-symbols-outlined text-on-surface-variant hover:text-primary p-1 rounded min-h-[38px] min-w-[38px] flex items-center justify-center">drag_indicator</span>
+                            <span class="font-bold text-primary font-body-md">#2 • Promo Spesial Bundling</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded-full bg-green-100 text-green-700 font-label-sm font-bold">ACTIVE</span>
+                            <button class="text-on-surface-variant hover:text-primary p-1 min-h-[38px] min-w-[38px] flex items-center justify-center">
+                                <span class="material-symbols-outlined text-[20px]">edit</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4 space-y-4">
+                        <div class="aspect-[21/9] bg-surface-container rounded-lg overflow-hidden relative border border-outline-variant/40">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr5Z-DRNPFY897Y1No1rG8e6TWyCbm7bWyivfY5ZI9n_j1cyQMP4pzKZCGehvUztyXA9hB6QdeU71Jyxf7_kBNJiTWInzUalKIzCUsATv2qWuIjqnBkUee5SI__tp209dIutxHocsauQxahX6tchlJGCwNRNLTtf4YLaqvI4w-zJ-jz00WNGPNM0S5EXE3w321GHyu9VTlqnWxUY6Nc71Jp57nPdllcacRi8vtzzKGB7Hyut3_7SRJKA" alt="Banner 2" class="w-full h-full object-cover"/>
+                            <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex flex-col justify-end p-4 text-white">
+                                <span class="font-label-sm text-[10px] uppercase tracking-wider text-secondary-fixed">Diskon Up To 30%</span>
+                                <h4 class="font-headline-sm text-headline-sm font-bold leading-tight">Lumina Elite Lighting Collection</h4>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-body-sm text-on-surface-variant pt-2 border-t border-outline-variant/50">
+                            <span>Link: `/promo.html`</span>
+                            <span>Periode: 15 Juli - 15 Agustus 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: ARTIKEL & BLOG -->
+        <div id="panel-articles" class="tab-panel hidden space-y-6 page-enter">
+            <div class="bg-white border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+                <div class="p-4 sm:p-stack-md border-b border-outline-variant flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-surface-container-low/50">
+                    <h3 class="font-title-lg text-title-lg text-primary font-bold">Daftar Artikel & Jurnal</h3>
+                    <div class="relative w-full sm:w-64">
+                        <span class="material-symbols-outlined pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+                        <input type="text" placeholder="Cari judul artikel..." class="w-full bg-white border border-outline-variant rounded-full pl-10 pr-4 py-1.5 font-body-sm text-body-sm focus:ring-2 focus:ring-primary/20 outline-none"/>
+                    </div>
+                </div>
+
+                <!-- Desktop Table (`hidden md:block`) -->
+                <div class="hidden md:block overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-surface-container-low border-b border-outline-variant font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+                            <tr>
+                                <th class="p-4">Judul Artikel</th>
+                                <th class="p-4">Kategori</th>
+                                <th class="p-4">Penulis</th>
+                                <th class="p-4">Tanggal Publikasi</th>
+                                <th class="p-4">Status</th>
+                                <th class="p-4 text-right">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-outline-variant font-body-md text-body-md">
+                            <tr class="hover:bg-surface-container-low/80 transition-colors">
+                                <td class="p-4 font-semibold text-primary">Strategi Pemasaran Q4 2024 & Tren Kacamata</td>
+                                <td class="p-4 text-on-surface-variant">Lifestyle</td>
+                                <td class="p-4">Admin Prime</td>
+                                <td class="p-4 text-on-surface-variant">20 Juli 2026</td>
+                                <td class="p-4"><span class="px-2.5 py-1 rounded-full bg-green-100 text-green-700 text-label-sm font-bold">PUBLISHED</span></td>
+                                <td class="p-4 text-right">
+                                    <button class="text-primary hover:underline font-bold text-label-md px-2 min-h-[36px]">Edit</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-surface-container-low/80 transition-colors">
+                                <td class="p-4 font-semibold text-primary">Panduan Memilih Lensa Anti-Radiasi Berkualitas</td>
+                                <td class="p-4 text-on-surface-variant">Edukasi & Tips</td>
+                                <td class="p-4">Dr. Sarah Optika</td>
+                                <td class="p-4 text-on-surface-variant">18 Juli 2026</td>
+                                <td class="p-4"><span class="px-2.5 py-1 rounded-full bg-green-100 text-green-700 text-label-sm font-bold">PUBLISHED</span></td>
+                                <td class="p-4 text-right">
+                                    <button class="text-primary hover:underline font-bold text-label-md px-2 min-h-[36px]">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Mobile Stacked Card (`md:hidden`) -->
+                <div class="md:hidden divide-y divide-outline-variant">
+                    <div class="p-4 space-y-2 hover:bg-surface-container-low transition-colors">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded">Lifestyle</span>
+                            <span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-[10px] font-bold">PUBLISHED</span>
+                        </div>
+                        <h4 class="font-bold text-primary text-body-md">Strategi Pemasaran Q4 2024 & Tren Kacamata</h4>
+                        <div class="flex items-center justify-between text-body-sm text-on-surface-variant pt-1">
+                            <span>Admin Prime • 20 Juli 2026</span>
+                            <button class="text-primary font-bold hover:underline min-h-[38px] px-2">Edit</button>
+                        </div>
+                    </div>
+                    <div class="p-4 space-y-2 hover:bg-surface-container-low transition-colors">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2 py-0.5 bg-primary-container text-on-primary-container text-[10px] font-bold rounded">Edukasi</span>
+                            <span class="px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-[10px] font-bold">PUBLISHED</span>
+                        </div>
+                        <h4 class="font-bold text-primary text-body-md">Panduan Memilih Lensa Anti-Radiasi Berkualitas</h4>
+                        <div class="flex items-center justify-between text-body-sm text-on-surface-variant pt-1">
+                            <span>Dr. Sarah • 18 Juli 2026</span>
+                            <button class="text-primary font-bold hover:underline min-h-[38px] px-2">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: TESTIMONI -->
+        <div id="panel-testimonials" class="tab-panel hidden space-y-6 page-enter">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Testimoni Card 1 -->
+                <div class="bg-white border border-outline-variant rounded-xl p-5 space-y-4 shadow-sm relative">
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-full bg-primary-fixed flex items-center justify-center font-bold text-primary shrink-0">AR</div>
+                        <div>
+                            <h4 class="font-bold text-primary font-body-md">Alvin Rezky</h4>
+                            <div class="flex text-amber-500 text-label-sm">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="font-body-sm text-on-surface-variant italic">"Kacamata Signature frame titanium sangat ringan dan nyaman dipakai seharian di depan layar komputer. Pelayanan super cepat!"</p>
+                    <div class="pt-2 border-t border-outline-variant flex justify-between items-center text-label-sm">
+                        <span class="text-green-700 font-bold">✔ Verified Buyer</span>
+                        <button class="text-error hover:underline">Hapus</button>
+                    </div>
+                </div>
+
+                <!-- Testimoni Card 2 -->
+                <div class="bg-white border border-outline-variant rounded-xl p-5 space-y-4 shadow-sm relative">
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-full bg-secondary-fixed flex items-center justify-center font-bold text-secondary shrink-0">MD</div>
+                        <div>
+                            <h4 class="font-bold text-primary font-body-md">Maya Putri D.</h4>
+                            <div class="flex text-amber-500 text-label-sm">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="font-body-sm text-on-surface-variant italic">"Desain klinis yang elegan, lensa photocromic-nya sangat responsif terhadap sinar matahari. Sangat direkomendasikan untuk profesional."</p>
+                    <div class="pt-2 border-t border-outline-variant flex justify-between items-center text-label-sm">
+                        <span class="text-green-700 font-bold">✔ Verified Buyer</span>
+                        <button class="text-error hover:underline">Hapus</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: FAQ (With Accordion Expand/Collapse & Reorder Handle) -->
+        <div id="panel-faq" class="tab-panel hidden space-y-4 page-enter">
+            <div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-xl flex items-center justify-between">
+                <span class="font-bold text-primary">Daftar Pertanyaan Umum (FAQ)</span>
+                <button onclick="triggerToast('FAQ baru ditambahkan')" class="bg-primary text-on-primary px-4 py-2 rounded-lg text-label-md font-bold min-h-[44px]">Tambah FAQ</button>
+            </div>
+
+            <!-- FAQ Item 1 -->
+            <div class="bg-white border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+                <div class="p-4 bg-surface-container-low flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <span title="Seret untuk reorder" class="drag-handle material-symbols-outlined text-on-surface-variant hover:text-primary p-1 rounded min-h-[38px] min-w-[38px] flex items-center justify-center">drag_indicator</span>
+                        <span class="font-bold text-primary font-body-md">Apakah menerima garansi pergantian lensa atau frame?</span>
+                    </div>
+                    <button onclick="toggleFaq('faq-1')" class="p-2 text-on-surface-variant hover:text-primary min-h-[44px] min-w-[44px] flex items-center justify-center">
+                        <span id="icon-faq-1" class="material-symbols-outlined transition-transform duration-200">expand_more</span>
+                    </button>
+                </div>
+                <div id="faq-1" class="hidden p-4 border-t border-outline-variant text-body-sm text-on-surface-variant bg-white">
+                    Ya, kami menyediakan garansi resmi 1 tahun untuk cacat produksi pada frame dan garansi kenyamanan 30 hari untuk penyesuaian resep lensa optik Anda.
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="bg-white border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+                <div class="p-4 bg-surface-container-low flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <span title="Seret untuk reorder" class="drag-handle material-symbols-outlined text-on-surface-variant hover:text-primary p-1 rounded min-h-[38px] min-w-[38px] flex items-center justify-center">drag_indicator</span>
+                        <span class="font-bold text-primary font-body-md">Berapa lama estimasi pengiriman pesanan kacamata resep?</span>
+                    </div>
+                    <button onclick="toggleFaq('faq-2')" class="p-2 text-on-surface-variant hover:text-primary min-h-[44px] min-w-[44px] flex items-center justify-center">
+                        <span id="icon-faq-2" class="material-symbols-outlined transition-transform duration-200">expand_more</span>
+                    </button>
+                </div>
+                <div id="faq-2" class="hidden p-4 border-t border-outline-variant text-body-sm text-on-surface-variant bg-white">
+                    Pembuatan lensa resep khusus membutuhkan waktu 1-2 hari kerja. Pengiriman ke Jabodetabek memakan waktu 1 hari, dan luar kota 2-4 hari kerja.
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: TENTANG KAMI & KONTAK -->
+        <div id="panel-about" class="tab-panel hidden space-y-6 page-enter">
+            <div class="bg-white border border-outline-variant rounded-xl p-6 space-y-6 max-w-2xl shadow-sm">
+                <h3 class="font-title-lg text-title-lg text-primary font-bold border-b border-outline-variant pb-3">Informasi Perusahaan & Kontak</h3>
+                <div class="space-y-4">
+                    <div class="space-y-2">
+                        <label class="block font-label-md text-label-md uppercase text-on-surface-variant">Tagline Utama</label>
+                        <input type="text" value="Defining the Standard of Optical Excellence" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md min-h-[44px]"/>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block font-label-md text-label-md uppercase text-on-surface-variant">Alamat Showroom Utama</label>
+                        <textarea rows="3" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-3 font-body-md">Jl. Senopati Raya No. 88, Kebayoran Baru, Jakarta Selatan 12190</textarea>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label class="block font-label-md text-label-md uppercase text-on-surface-variant">Email CS</label>
+                            <input type="email" value="cs@citraprima.com" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md min-h-[44px]"/>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block font-label-md text-label-md uppercase text-on-surface-variant">WhatsApp Bisnis</label>
+                            <input type="text" value="+62 811-8889-9900" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md min-h-[44px]"/>
+                        </div>
+                    </div>
+                    <button onclick="triggerToast('Info Tentang Kami Berhasil Diperbarui')" type="button" class="bg-primary text-on-primary px-6 py-3 rounded-lg font-label-md font-bold hover:opacity-90 min-h-[44px]">Simpan Perubahan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Toast Notification -->
+<div id="toastNotification" class="fixed bottom-6 right-6 bg-[#15803d] text-white px-5 py-4 rounded-xl shadow-2xl flex items-center gap-3 z-50 hidden border border-white/20">
+    <span class="material-symbols-outlined text-[24px]">check_circle</span>
+    <div>
+        <h4 id="toastTitle" class="font-bold font-body-md">Konten Berhasil Disimpan!</h4>
+        <p class="font-body-sm text-white/80">Perubahan telah diperbarui di sistem.</p>
+    </div>
+</div>
+
+<script>
+    // Sidebar Drawer Toggle Logic
+    const openSidebarBtn = document.getElementById('openSidebarBtn');
+    const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+    const sidebarDrawer = document.getElementById('sidebarDrawer');
+    const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+
+    function openDrawer() {
+        sidebarDrawer.classList.remove('-translate-x-full');
+        sidebarBackdrop.classList.remove('hidden');
+        setTimeout(() => sidebarBackdrop.classList.remove('opacity-0'), 10);
+    }
+
+    function closeDrawer() {
+        sidebarDrawer.classList.add('-translate-x-full');
+        sidebarBackdrop.classList.add('opacity-0');
+        setTimeout(() => sidebarBackdrop.classList.add('hidden'), 300);
+    }
+
+    if (openSidebarBtn) openSidebarBtn.addEventListener('click', openDrawer);
+    if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', closeDrawer);
+    if (sidebarBackdrop) sidebarBackdrop.addEventListener('click', closeDrawer);
+
+    // Accordion Sub-menu Toggle
+    function toggleSubMenu(menuId) {
+        const menu = document.getElementById(menuId);
+        const icon = document.getElementById('icon-' + menuId);
+        if (menu.classList.contains('hidden')) {
+            menu.classList.remove('hidden');
+            if (icon) icon.classList.add('rotate-180');
+        } else {
+            menu.classList.add('hidden');
+            if (icon) icon.classList.remove('rotate-180');
+        }
+    }
+
+    // Sub-Navigation Tab Switching
+    function switchTab(tabId) {
+        const panels = document.querySelectorAll('.tab-panel');
+        const buttons = document.querySelectorAll('.tab-btn');
+        panels.forEach(p => p.classList.add('hidden'));
+        buttons.forEach(b => {
+            b.classList.remove('border-primary', 'text-primary', 'font-bold');
+            b.classList.add('border-transparent', 'text-on-surface-variant');
+        });
+
+        const targetPanel = document.getElementById('panel-' + tabId);
+        const targetBtn = document.getElementById('btn-' + tabId);
+        if (targetPanel) targetPanel.classList.remove('hidden');
+        if (targetBtn) {
+            targetBtn.classList.remove('border-transparent', 'text-on-surface-variant');
+            targetBtn.classList.add('border-primary', 'text-primary', 'font-bold');
+        }
+    }
+
+    // Check hash on load to switch tab
+    window.addEventListener('DOMContentLoaded', () => {
+        if (window.location.hash) {
+            const hash = window.location.hash.replace('#', '');
+            if (['banner', 'articles', 'testimonials', 'faq', 'about'].includes(hash)) {
+                switchTab(hash);
+            }
+        }
+    });
+
+    // FAQ Accordion Expand/Collapse
+    function toggleFaq(faqId) {
+        const el = document.getElementById(faqId);
+        const icon = document.getElementById('icon-' + faqId);
+        if (el.classList.contains('hidden')) {
+            el.classList.remove('hidden');
+            if (icon) icon.classList.add('rotate-180');
+        } else {
+            el.classList.add('hidden');
+            if (icon) icon.classList.remove('rotate-180');
+        }
+    }
+
+    // Toast Trigger
+    function triggerToast(msg) {
+        const toast = document.getElementById('toastNotification');
+        const title = document.getElementById('toastTitle');
+        if (title && msg) title.textContent = msg;
+        if (toast) {
+            toast.classList.remove('hidden');
+            toast.classList.add('toast-animate');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('toast-animate');
+            }, 2500);
+        }
+    }
+
+    // Skeleton Simulation
+    const toggleSkeletonBtn = document.getElementById('toggleSkeletonBtn');
+    let skeletonActive = false;
+    if (toggleSkeletonBtn) {
+        toggleSkeletonBtn.addEventListener('click', () => {
+            skeletonActive = !skeletonActive;
+            const panels = document.querySelectorAll('.tab-panel');
+            const skeletonContent = document.getElementById('skeletonContent');
+            if (skeletonActive) {
+                panels.forEach(p => p.classList.add('hidden'));
+                if (skeletonContent) skeletonContent.classList.remove('hidden');
+                toggleSkeletonBtn.classList.add('text-primary', 'bg-primary/10');
+            } else {
+                if (skeletonContent) skeletonContent.classList.add('hidden');
+                const activeTabBtn = document.querySelector('.tab-btn.border-primary');
+                if (activeTabBtn) {
+                    const tabId = activeTabBtn.id.replace('btn-', '');
+                    switchTab(tabId);
+                } else {
+                    switchTab('banner');
+                }
+                toggleSkeletonBtn.classList.remove('text-primary', 'bg-primary/10');
+            }
+        });
+    }
+</script>
+</body>
+</html>

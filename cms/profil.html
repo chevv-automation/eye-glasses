@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Citra Prima Signature CMS - Profil Perusahaan</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-container": "#d1e9d1",
+                      "on-primary-fixed": "#0f1f0e",
+                      "on-tertiary-container": "#9fa4a9",
+                      "on-surface": "#191c1d",
+                      "surface-container-highest": "#e1e3e4",
+                      "inverse-on-surface": "#f0f1f2",
+                      "on-background": "#191c1d",
+                      "inverse-surface": "#2e3132",
+                      "on-secondary-container": "#556957",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-fixed-variant": "#384b3a",
+                      "tertiary-container": "#353a3f",
+                      "on-primary-container": "#95a98f",
+                      "on-surface-variant": "#444841",
+                      "primary-fixed-dim": "#b8ccb1",
+                      "inverse-primary": "#b8ccb1",
+                      "surface-container-low": "#f3f4f5",
+                      "primary": "#182816",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed-dim": "#c3c7cd",
+                      "secondary": "#4f6351",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed": "#0d1f11",
+                      "tertiary-fixed": "#dfe3e9",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed-variant": "#43474c",
+                      "surface-bright": "#f8f9fa",
+                      "tertiary": "#202429",
+                      "surface-container-high": "#e7e8e9",
+                      "on-secondary": "#ffffff",
+                      "outline": "#747871",
+                      "surface-tint": "#51634d",
+                      "surface": "#f8f9fa",
+                      "secondary-fixed": "#d1e9d1",
+                      "background": "#f8f9fa",
+                      "surface-container": "#edeeef",
+                      "primary-container": "#2d3e2a",
+                      "surface-variant": "#e1e3e4",
+                      "primary-fixed": "#d4e8cc",
+                      "outline-variant": "#c4c8bf",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#3a4b36",
+                      "error": "#ba1a1a",
+                      "surface-dim": "#d9dadb",
+                      "secondary-fixed-dim": "#b6ccb6",
+                      "on-error-container": "#93000a",
+                      "on-tertiary-fixed": "#171c20"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "stack-md": "16px",
+                      "stack-sm": "8px",
+                      "gutter": "24px",
+                      "container-max": "1440px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "32px",
+                      "sidebar-width": "260px"
+              },
+              "fontFamily": {
+                      "headline-sm": ["Montserrat"],
+                      "headline-md": ["Montserrat"],
+                      "body-md": ["Montserrat"],
+                      "title-lg": ["Montserrat"],
+                      "body-sm": ["Montserrat"],
+                      "label-sm": ["Montserrat"],
+                      "label-md": ["Montserrat"],
+                      "display-lg": ["Montserrat"]
+              },
+              "fontSize": {
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "title-lg": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                      "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        body { font-family: 'Montserrat', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab {
+            border-bottom: 2px solid #2d3e2a;
+            color: #2d3e2a;
+            font-weight: 700;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c4c8bf;
+            border-radius: 10px;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body class="bg-background text-on-background">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-[260px] bg-primary dark:bg-primary-container border-r border-outline-variant flex flex-col p-4 z-50">
+<div class="mb-10 px-4">
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-primary">Citra Prima</h1>
+<p class="text-on-primary/60 text-label-sm uppercase tracking-widest mt-1">Signature Boutique</p>
+</div>
+<nav class="flex-grow space-y-2">
+<a class="flex items-center gap-3 text-on-primary/70 hover:text-on-primary px-4 py-3 transition-colors hover:bg-primary-fixed-variant/20 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-on-primary/70 hover:text-on-primary px-4 py-3 transition-colors hover:bg-primary-fixed-variant/20 rounded-lg" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md text-body-md">Katalog Produk</span>
+</a>
+<a class="flex items-center gap-3 text-on-primary/70 hover:text-on-primary px-4 py-3 transition-colors hover:bg-primary-fixed-variant/20 rounded-lg" href="#">
+<span class="material-symbols-outlined">campaign</span>
+<span class="font-body-md text-body-md">Pemasaran</span>
+</a>
+<a class="flex items-center gap-3 bg-secondary-container text-on-secondary-container rounded-lg px-4 py-3 font-semibold" href="#">
+<span class="material-symbols-outlined">article</span>
+<span class="font-body-md text-body-md">Konten</span>
+</a>
+<a class="flex items-center gap-3 text-on-primary/70 hover:text-on-primary px-4 py-3 transition-colors hover:bg-primary-fixed-variant/20 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Pengaturan</span>
+</a>
+</nav>
+<div class="mt-auto pt-4 border-t border-on-primary/10 flex items-center gap-3 px-4">
+<div class="w-10 h-10 rounded-full bg-primary-fixed-dim flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Professional studio portrait of a corporate administrator in minimalist business attire, soft lighting, neutral background, reflecting executive reliability and professional authority for the Citra Prima Signature brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4pUjlo_ECCjCBWdIDhtGHttZ4jRaKpXg9Pf_aB6Q2zcb-ewh6kV8LRYLvo6vcVoCASmX_Z_2vSWdtqIFCcmZ3v5Yf5bcvc1aqZqjPzBdQo3viYoNfil4vng89KUN-CFrkMD2ALYcnePERT5dUDMuP0NwsXXZhKdx1FM3PhkpPmDnV6k9W5YeDdC8ST8VF5jK7gjI3UwP0gK4mqt2KsWQEbQnHS7szkv9rcUoZZVWDRKxMO-cACo3ODg"/>
+</div>
+<div>
+<p class="text-on-primary font-semibold text-body-sm">Admin Citra</p>
+<p class="text-on-primary/50 text-label-sm">Super Administrator</p>
+</div>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 left-[260px] h-16 bg-surface dark:bg-surface-dim border-b border-outline-variant flex justify-between items-center px-margin-desktop z-40">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Konten</h2>
+<div class="h-6 w-px bg-outline-variant"></div>
+<nav class="flex gap-4">
+<span class="text-primary font-bold border-b-2 border-primary pb-1 font-title-lg text-title-lg cursor-pointer">Konten</span>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">help</span>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-[260px] pt-16 pb-24 bg-background min-h-screen">
+<div class="max-w-[1440px] mx-auto p-margin-desktop">
+<!-- Breadcrumb & Header -->
+<div class="mb-8">
+<div class="flex items-center gap-2 text-on-surface-variant text-label-md mb-2">
+<span>Admin</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span>Konten</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-bold">Tentang Kami</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-primary">Profil Perusahaan &amp; Kontak</h1>
+</div>
+<!-- Tab Navigation -->
+<div class="flex border-b border-outline-variant mb-8 gap-10">
+<button class="pb-4 px-2 font-title-lg text-title-lg text-on-surface-variant hover:text-primary transition-colors active-tab" id="tab-brand-story" onclick="switchTab('brand-story')">Cerita Brand</button>
+<button class="pb-4 px-2 font-title-lg text-title-lg text-on-surface-variant hover:text-primary transition-colors" id="tab-company-team" onclick="switchTab('company-team')">Tim Perusahaan</button>
+<button class="pb-4 px-2 font-title-lg text-title-lg text-on-surface-variant hover:text-primary transition-colors" id="tab-contact-ops" onclick="switchTab('contact-ops')">Kontak &amp; Operasional</button>
+</div>
+<!-- TAB 1: CERITA BRAND -->
+<section class="tab-content active space-y-gutter" id="brand-story-content">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Text Editor Section -->
+<div class="lg:col-span-2 space-y-gutter">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-4 uppercase tracking-wider">Sejarah &amp; Cerita Citra Prima Signature</label>
+<div class="border border-outline-variant rounded-lg overflow-hidden">
+<div class="bg-surface-container-low p-2 border-b border-outline-variant flex gap-2">
+<button class="p-1 hover:bg-surface-container-high rounded transition-colors"><span class="material-symbols-outlined text-[20px]">format_bold</span></button>
+<button class="p-1 hover:bg-surface-container-high rounded transition-colors"><span class="material-symbols-outlined text-[20px]">format_italic</span></button>
+<button class="p-1 hover:bg-surface-container-high rounded transition-colors"><span class="material-symbols-outlined text-[20px]">format_list_bulleted</span></button>
+<button class="p-1 hover:bg-surface-container-high rounded transition-colors"><span class="material-symbols-outlined text-[20px]">link</span></button>
+</div>
+<textarea class="w-full h-64 p-4 font-body-md text-body-md border-none focus:ring-0 resize-none bg-white" placeholder="Tuliskan kisah perjalanan Citra Prima Signature di sini...">Citra Prima Signature didirikan dengan visi untuk menghadirkan keanggunan abadi bagi setiap individu. Berawal dari butik kecil di jantung kota, kami telah berkembang menjadi simbol kualitas dan desain eksklusif yang memadukan tradisi dengan modernitas...</textarea>
+</div>
+</div>
+</div>
+<!-- Banner Upload -->
+<div class="lg:col-span-1">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant h-full">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-4 uppercase tracking-wider">Banner Story (16:9)</label>
+<div class="aspect-video bg-surface-container-low rounded-lg border-2 border-dashed border-outline-variant flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container-high transition-all group overflow-hidden relative">
+<img class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity" data-alt="A cinematic banner image for a luxury fashion boutique, showcasing elegant silk fabrics draped over minimalist furniture in a sun-drenched studio. High-end aesthetic with muted earthy tones and a focus on premium texture, ideal for an 'About Us' section of a high-end brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5T97JrnnbuTeuWhalKGDtN5RkFg0nitiUNzYmYfX4S1Csr2i9vmG-nsA4-fcoXiJbRCn0oi72G-ZW4qPhL-GQ_v8XyCFQe_JQsaVmMw8Qwim6J9cdFRgAScXePr0eW7tHp-0iSZRuN793meE1_zxEjntf6Ey13fs7clkK6FW4oYjm1zwpHqIZeG0XyUFphJt3fGYCB0eLXQIz7CT1haEBV2-gxqhviQN0r3Wqx2g7Zk88hdgvywLD3w"/>
+<div class="relative z-10 flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-2">cloud_upload</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Klik untuk ganti banner</p>
+<p class="text-[11px] text-outline mt-1">Saran: 1920x1080px (Max 2MB)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Visi & Misi Section -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-4 uppercase tracking-wider">Visi Perusahaan</label>
+<textarea class="w-full h-32 p-4 font-body-md text-body-md border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary/20 bg-white" placeholder="Masukkan visi perusahaan...">Menjadi destinasi butik premium terkemuka yang menginspirasi gaya hidup elegan melalui karya-karya desain orisinal yang berkelanjutan.</textarea>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-4 uppercase tracking-wider">Misi Perusahaan</label>
+<div class="space-y-3" id="misi-list">
+<div class="flex gap-2">
+<input class="flex-grow p-3 font-body-md text-body-md border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary/20 bg-white" type="text" value="Menghasilkan produk berkualitas tinggi dengan detail sempurna."/>
+<button class="p-2 text-error hover:bg-error/10 rounded transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</div>
+<div class="flex gap-2">
+<input class="flex-grow p-3 font-body-md text-body-md border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary/20 bg-white" type="text" value="Memberikan pengalaman belanja personal yang eksklusif bagi pelanggan."/>
+<button class="p-2 text-error hover:bg-error/10 rounded transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</div>
+<button class="mt-4 flex items-center gap-2 text-primary font-semibold hover:underline px-2 py-1">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="text-body-md">Tambah Misi</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- TAB 2: TIM PERUSAHAAN -->
+<section class="tab-content space-y-gutter" id="company-team-content">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h3 class="font-title-lg text-title-lg text-primary">Profil Tim Utama</h3>
+<p class="text-body-sm text-on-surface-variant">Kelola daftar personil kunci perusahaan yang tampil di publik.</p>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-semibold flex items-center gap-2 hover:bg-primary-container transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+<span>Tambah Anggota</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Team Card 1 -->
+<div class="bg-white border border-outline-variant rounded-xl p-6 relative group hover:shadow-md transition-all">
+<button class="absolute top-4 right-4 text-outline hover:text-error transition-colors p-1"><span class="material-symbols-outlined">close</span></button>
+<div class="flex flex-col items-center text-center">
+<div class="w-24 h-24 rounded-full overflow-hidden bg-surface-container mb-4 border-2 border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="Close-up professional portrait of an elegant Indonesian female fashion director in her 40s. She is wearing a sophisticated dark green blazer, minimalist pearl jewelry, set against a clean marble background. High-fashion corporate photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuArc1MdBEbzy4XMDj9G2qZK0Hz4yXSWXDdSCofKnO7NXDiQyrGUQMRtyuh13_iJ79am1p_6AWlVHQSFiPahiA_9XeJkqeXvC3wFHPS__sXGQEIIstwkiw_Mp7qzpn6YqFDMyrsg4pQFR8ErH1xZUrLsnBhnZyem4yjEabOKF7j97l39BRtl4YgK3Zu5OgOr-UqHqu0pGzGrs_pO3cChJkXnriWGn8PQ3NpiAl8ROJA4ipQcLAOGb-CqDA"/>
+</div>
+<input class="w-full text-center font-title-lg text-title-lg text-primary bg-transparent border-none focus:ring-0 p-0 mb-1" type="text" value="Citra Primalia"/>
+<input class="w-full text-center font-body-sm text-body-sm text-on-surface-variant bg-transparent border-none focus:ring-0 p-0 mb-4" type="text" value="Founder &amp; Creative Director"/>
+<div class="w-full space-y-2 text-left">
+<div class="flex items-center gap-2 px-3 py-2 bg-surface-container-low rounded-lg border border-outline-variant/30">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">share</span>
+<input class="flex-grow bg-transparent border-none p-0 text-label-md focus:ring-0" type="text" value="instagram.com/citraprimalia"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Team Card 2 -->
+<div class="bg-white border border-outline-variant rounded-xl p-6 relative group hover:shadow-md transition-all">
+<button class="absolute top-4 right-4 text-outline hover:text-error transition-colors p-1"><span class="material-symbols-outlined">close</span></button>
+<div class="flex flex-col items-center text-center">
+<div class="w-24 h-24 rounded-full overflow-hidden bg-surface-container mb-4 border-2 border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="Headshot of a modern professional Indonesian male COO in his late 30s. Wearing a crisp white shirt and stylish spectacles. Sharp executive look, bright soft lighting, studio setting. Professional corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_Uad4T9__3ufRM2jvyBLWS3Eq4gA1iDB5RGUFmTNI0Lnp1-IVjfJ4JFWpdT_5KHKyis0lDu0-jrbAXhLKVioUyHKwCKIn6L271aBI5fU3-z5Mw9foedhBLBxCMXootQo6xsZAgGQbQvdQ4uD58YeZxP8fK5qzE9EOXAyp4VbDBvtFnUhkhYJn8p1szstX6ibhkT8jKYcXsr2_Xe19yU3sBloZxre5XzwY-fe3Bk0WmOL53YSEcm7YPA"/>
+</div>
+<input class="w-full text-center font-title-lg text-title-lg text-primary bg-transparent border-none focus:ring-0 p-0 mb-1" type="text" value="Andika Wijaya"/>
+<input class="w-full text-center font-body-sm text-body-sm text-on-surface-variant bg-transparent border-none focus:ring-0 p-0 mb-4" type="text" value="Chief Operations Officer"/>
+<div class="w-full space-y-2 text-left">
+<div class="flex items-center gap-2 px-3 py-2 bg-surface-container-low rounded-lg border border-outline-variant/30">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">share</span>
+<input class="flex-grow bg-transparent border-none p-0 text-label-md focus:ring-0" type="text" value="linkedin.com/in/andikaw"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Team Card Empty/Add Placeholder -->
+<div class="bg-background border-2 border-dashed border-outline-variant rounded-xl p-6 flex flex-col items-center justify-center text-center group cursor-pointer hover:border-primary hover:bg-primary/5 transition-all">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-4 text-outline group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">add_circle</span>
+</div>
+<p class="font-semibold text-on-surface-variant group-hover:text-primary transition-colors">Tambah Anggota Tim</p>
+</div>
+</div>
+</section>
+<!-- TAB 3: KONTAK & OPERASIONAL -->
+<section class="tab-content" id="contact-ops-content">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<!-- Column Left: Basic Info -->
+<div class="space-y-gutter">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant">
+<h3 class="font-title-lg text-title-lg text-primary mb-6">Informasi Kontak Utama</h3>
+<div class="space-y-5">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2 uppercase tracking-wider">WhatsApp Customer Service</label>
+<div class="flex">
+<span class="inline-flex items-center px-4 rounded-l-lg border border-r-0 border-outline-variant bg-surface-container-low text-on-surface-variant font-medium">+62</span>
+<input class="flex-grow p-3 font-body-md text-body-md border border-outline-variant rounded-r-lg focus:border-primary focus:ring-1 focus:ring-primary/20 bg-white" type="text" value="812-3456-7890"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2 uppercase tracking-wider">Email Resmi</label>
+<input class="w-full p-3 font-body-md text-body-md border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary/20 bg-white" type="email" value="hello@citraprimasignature.com"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2 uppercase tracking-wider">Alamat Butik Pusat</label>
+<textarea class="w-full h-24 p-3 font-body-md text-body-md border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary/20 bg-white">Jln. Senopati No. 45, Kebayoran Baru, Jakarta Selatan 12110, Indonesia</textarea>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2 uppercase tracking-wider">Peta Lokasi (Embed Google Maps)</label>
+<div class="aspect-video bg-surface-container-low rounded-lg border border-outline-variant overflow-hidden relative group">
+<div class="absolute inset-0 bg-black/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none">
+<button class="bg-white px-4 py-2 rounded-full font-semibold shadow-lg text-body-sm text-primary">Ganti Koordinat</button>
+</div>
+<img class="w-full h-full object-cover" data-location="Jakarta" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8WzwuCgMY4H-GNY3JFtuCapK3D4VhbP9COMkl-5LhFrMyVPZ2L6Isg0oG9_7gIUSJL13kBBa5uUBwrm2VxwQ2fpLzJK_nx7BP3GRxclF68jnTz4Y2Opi1M8AzR6M3St7-4Oo9tQ8OwA_2BoJdjCoBMWNNZeLUfWcuLXu0jQ8xarLW9lUjU1tpSiSOgNVYPLO8Fl5DwbpoZ6QMR9_FMIbNFPFQKYPqQyoSMhdzzk-hLTc-RuVKmDE3Hg"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column Right: Socials & Ops -->
+<div class="space-y-gutter">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant">
+<h3 class="font-title-lg text-title-lg text-primary mb-6">Media Sosial</h3>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary">alternate_email</span>
+</div>
+<div class="flex-grow">
+<label class="block text-[11px] font-bold text-outline mb-1 uppercase">Instagram Handle</label>
+<input class="w-full p-2 font-body-md text-body-md border border-outline-variant rounded focus:border-primary focus:ring-0 bg-white" type="text" value="@citraprimasignature"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary">video_library</span>
+</div>
+<div class="flex-grow">
+<label class="block text-[11px] font-bold text-outline mb-1 uppercase">TikTok URL</label>
+<input class="w-full p-2 font-body-md text-body-md border border-outline-variant rounded focus:border-primary focus:ring-0 bg-white" type="text" value="tiktok.com/@citraprimasignature"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary">face_nod</span>
+</div>
+<div class="flex-grow">
+<label class="block text-[11px] font-bold text-outline mb-1 uppercase">Facebook Page</label>
+<input class="w-full p-2 font-body-md text-body-md border border-outline-variant rounded focus:border-primary focus:ring-0 bg-white" type="text" value="Citra Prima Signature Official"/>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant">
+<h3 class="font-title-lg text-title-lg text-primary mb-6">Jam Operasional</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center py-2 border-b border-outline-variant/30">
+<span class="font-body-md text-on-surface">Senin - Jumat</span>
+<div class="flex items-center gap-2">
+<input class="p-1 border border-outline-variant rounded text-label-md" type="time" value="10:00"/>
+<span class="text-outline">-</span>
+<input class="p-1 border border-outline-variant rounded text-label-md" type="time" value="20:00"/>
+</div>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-outline-variant/30">
+<span class="font-body-md text-on-surface">Sabtu</span>
+<div class="flex items-center gap-2">
+<input class="p-1 border border-outline-variant rounded text-label-md" type="time" value="10:00"/>
+<span class="text-outline">-</span>
+<input class="p-1 border border-outline-variant rounded text-label-md" type="time" value="21:00"/>
+</div>
+</div>
+<div class="flex justify-between items-center py-2">
+<span class="font-body-md text-on-surface">Minggu / Libur</span>
+<div class="flex items-center gap-3">
+<span class="text-error font-semibold text-body-sm">Tutup</span>
+<button class="text-primary text-[11px] font-bold uppercase underline">Set Buka</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Bottom Sticky Action Bar -->
+<footer class="fixed bottom-0 left-[260px] right-0 h-20 bg-white border-t border-outline-variant px-margin-desktop flex items-center justify-between z-50">
+<div class="flex items-center gap-3">
+<span class="flex h-3 w-3 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-error"></span>
+</span>
+<span class="font-body-md text-on-surface-variant">Status: <span class="font-bold text-error">Belum Disimpan</span></span>
+<p class="text-label-sm text-outline border-l border-outline-variant ml-3 pl-3">Terakhir diubah: 2 menit yang lalu oleh Admin</p>
+</div>
+<div class="flex gap-4">
+<button class="px-8 py-3 rounded-lg font-semibold text-primary hover:bg-surface-container transition-colors">Batalkan Perubahan</button>
+<button class="bg-primary text-on-primary px-10 py-3 rounded-lg font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">Simpan Perubahan</button>
+</div>
+</footer>
+<script>
+        function switchTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            // Deactivate all buttons
+            document.querySelectorAll('[id^="tab-"]').forEach(btn => {
+                btn.classList.remove('active-tab');
+                btn.classList.add('text-on-surface-variant');
+            });
+            
+            // Show target content
+            document.getElementById(tabId + '-content').classList.add('active');
+            // Activate target button
+            document.getElementById('tab-' + tabId).classList.add('active-tab');
+            document.getElementById('tab-' + tabId).classList.remove('text-on-surface-variant');
+        }
+
+        // Simple interactive feedback for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', function() {
+                this.classList.add('opacity-80');
+            });
+            button.addEventListener('mouseup', function() {
+                this.classList.remove('opacity-80');
+            });
+        });
+    </script>
+</body></html>

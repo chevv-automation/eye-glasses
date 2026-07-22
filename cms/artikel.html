@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kelola Artikel &amp; Blog | Citra Prima Signature CMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Load Theme Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#43474c",
+                    "inverse-surface": "#2e3132",
+                    "on-background": "#191c1d",
+                    "on-secondary-fixed": "#0d1f11",
+                    "on-tertiary-fixed": "#171c20",
+                    "on-primary-container": "#95a98f",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#51634d",
+                    "outline": "#747871",
+                    "on-secondary-container": "#556957",
+                    "surface-container-high": "#e7e8e9",
+                    "inverse-primary": "#b8ccb1",
+                    "primary-fixed": "#d4e8cc",
+                    "inverse-on-surface": "#f0f1f2",
+                    "surface-variant": "#e1e3e4",
+                    "surface": "#f8f9fa",
+                    "on-primary-fixed": "#0f1f0e",
+                    "tertiary-container": "#353a3f",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f3f4f5",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#3a4b36",
+                    "surface-bright": "#f8f9fa",
+                    "primary": "#182816",
+                    "on-tertiary-container": "#9fa4a9",
+                    "tertiary-fixed": "#dfe3e9",
+                    "secondary-fixed-dim": "#b6ccb6",
+                    "secondary-container": "#d1e9d1",
+                    "surface-dim": "#d9dadb",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed-dim": "#c3c7cd",
+                    "on-secondary-fixed-variant": "#384b3a",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#e1e3e4",
+                    "primary-fixed-dim": "#b8ccb1",
+                    "secondary-fixed": "#d1e9d1",
+                    "on-tertiary": "#ffffff",
+                    "on-surface": "#191c1d",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#2d3e2a",
+                    "outline-variant": "#c4c8bf",
+                    "tertiary": "#202429",
+                    "surface-container": "#edeeef",
+                    "background": "#f8f9fa",
+                    "on-surface-variant": "#444841",
+                    "secondary": "#4f6351"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "32px",
+                    "stack-sm": "8px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "container-max": "1440px",
+                    "stack-md": "16px",
+                    "sidebar-width": "260px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Montserrat"],
+                    "label-md": ["Montserrat"],
+                    "display-lg": ["Montserrat"],
+                    "body-sm": ["Montserrat"],
+                    "headline-sm": ["Montserrat"],
+                    "body-md": ["Montserrat"],
+                    "title-lg": ["Montserrat"],
+                    "headline-md": ["Montserrat"]
+            },
+            "fontSize": {
+                    "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "title-lg": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #F8F9FA;
+            color: #191C1D;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #D1D5DB;
+            border-radius: 10px;
+        }
+        .article-card-hover:hover {
+            background-color: #F3F4F6;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Fixed Sidebar -->
+<aside class="fixed left-0 top-0 h-full w-[260px] bg-primary-container flex flex-col p-stack-md border-r border-outline-variant z-50">
+<!-- Brand Identity -->
+<div class="mb-8 px-4">
+<h1 class="font-display-lg text-display-lg font-bold text-on-primary">Optical CMS</h1>
+<p class="font-body-md text-on-primary-container opacity-80">Administrative Suite</p>
+</div>
+<!-- Main Navigation -->
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-fixed-variant/70 font-label-md hover:bg-primary/10 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-fixed-variant/70 font-label-md hover:bg-primary/10 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">eyeglasses</span>
+                Product Catalog
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-fixed-variant/70 font-label-md hover:bg-primary/10 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">campaign</span>
+                Marketing
+            </a>
+<!-- Active Tab: Content -->
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-label-md" href="#">
+<span class="material-symbols-outlined">article</span>
+                Content
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-fixed-variant/70 font-label-md hover:bg-primary/10 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</nav>
+<!-- CTA & Footer -->
+<div class="mt-auto space-y-4 pt-6 border-t border-outline-variant/30">
+<button class="w-full bg-on-primary-container text-primary-container py-3 rounded-lg font-label-md font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">add</span>
+                Add New Product
+            </button>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-on-primary-fixed-variant/70 font-label-md hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+                    Help Center
+                </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-primary-fixed-variant/70 font-label-md hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+                    Logout
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Shell -->
+<main class="ml-[260px] min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-40 w-full bg-surface border-b border-outline-variant px-margin-desktop py-stack-sm flex justify-between items-center">
+<div class="flex items-center gap-8 flex-1">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">Optical Boutique</span>
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 outline-none text-body-md" placeholder="Cari artikel, penulis, atau kategori..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-4 py-2 text-on-surface-variant font-label-md hover:text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">support</span>
+                    Support
+                </button>
+<div class="h-6 w-[1px] bg-outline-variant mx-2"></div>
+<div class="flex gap-3">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right">
+<p class="font-label-md text-primary">Manager Profile</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">Administrator</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-outline-variant object-cover" data-alt="A professional headshot of a middle-aged woman with glasses, smiling confidently against a minimalist blurred office background. The lighting is bright and clean, consistent with a high-end corporate administrative portal. The palette is dominated by neutral whites and grays with subtle hints of forest green in the attire." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4PQMhlSq87wChzXI8KBxRBljKm_in454JpIbKqq726g_rc_N1fFQdwgCj4FBJzsOu4Wor55qeC57T7qEoAgfSOJa8tNNLgb73ReizdCXQF6BiJopclltKunJSB_ZxlRd9Dp2bQNpGj31faiLUTjHlN3Yyb95iRkfMqahfsSUK_0fQggwxeo6_np2H-HNqv30w_lW-UMhVKrVtFhNtucggFXBlvlg-SaYoVmgFbByYDhmQs5YFIQ0GpA"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="p-margin-desktop space-y-8">
+<!-- Breadcrumbs & Title Bar -->
+<div class="flex justify-between items-end">
+<div class="space-y-1">
+<nav class="flex items-center gap-2 text-on-surface-variant font-label-sm uppercase tracking-wider mb-2">
+<a class="hover:text-primary transition-colors" href="#">Admin</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Konten</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">Artikel</span>
+</nav>
+<h2 class="font-headline-md text-headline-md text-primary">Artikel &amp; Blog</h2>
+</div>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-lg flex items-center gap-2 font-label-md shadow-sm hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]">edit_square</span>
+                    + Tulis Artikel Baru
+                </button>
+</div>
+<!-- Dashboard Statistics Quick View -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl flex items-center gap-4">
+<div class="w-12 h-12 bg-primary-fixed text-on-primary-fixed flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined">article</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm">Total Artikel</p>
+<p class="text-headline-sm font-bold">124</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl flex items-center gap-4">
+<div class="w-12 h-12 bg-secondary-container text-on-secondary-container flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined">visibility</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm">Total Views</p>
+<p class="text-headline-sm font-bold">48.2K</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl flex items-center gap-4">
+<div class="w-12 h-12 bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined">pending_actions</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm">Draft</p>
+<p class="text-headline-sm font-bold">12</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl flex items-center gap-4">
+<div class="w-12 h-12 bg-error-container text-on-error-container flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined">chat_bubble</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm">Komentar Baru</p>
+<p class="text-headline-sm font-bold">8</p>
+</div>
+</div>
+</div>
+<!-- Control Bar: Filters & Sorting -->
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-xl flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-wrap items-center gap-3">
+<div class="relative min-w-[200px]">
+<select class="appearance-none w-full pl-4 pr-10 py-2 bg-surface border border-outline-variant rounded-lg font-label-md focus:border-primary outline-none">
+<option>Semua Kategori</option>
+<option>Lifestyle</option>
+<option>Tutorial</option>
+<option>Review</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+<div class="relative min-w-[160px]">
+<select class="appearance-none w-full pl-4 pr-10 py-2 bg-surface border border-outline-variant rounded-lg font-label-md focus:border-primary outline-none">
+<option>Status: Semua</option>
+<option>Published</option>
+<option>Draft</option>
+<option>Archived</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+<button class="px-4 py-2 border border-outline-variant rounded-lg font-label-md flex items-center gap-2 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                        Rentang Waktu
+                    </button>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-on-surface-variant">Urutkan:</span>
+<div class="relative min-w-[180px]">
+<select class="appearance-none w-full pl-4 pr-10 py-2 bg-surface border border-outline-variant rounded-lg font-label-md focus:border-primary outline-none text-right pr-10">
+<option>Terbaru Dibuat</option>
+<option>Terlama Dibuat</option>
+<option>A-Z Judul</option>
+<option>Views Terbanyak</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">sort</span>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-lg" title="Refresh Data">
+<span class="material-symbols-outlined">refresh</span>
+</button>
+</div>
+</div>
+<!-- Main Data Table Container -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="py-4 px-6 w-12 text-center">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/20" id="master-checkbox" type="checkbox"/>
+</th>
+<th class="py-4 px-4 font-label-md text-on-surface-variant">Thumbnail</th>
+<th class="py-4 px-4 font-label-md text-on-surface-variant">Judul Artikel &amp; Slug</th>
+<th class="py-4 px-4 font-label-md text-on-surface-variant">Kategori</th>
+<th class="py-4 px-4 font-label-md text-on-surface-variant">Penulis</th>
+<th class="py-4 px-4 font-label-md text-on-surface-variant text-center">Tgl Rilis</th>
+<th class="py-4 px-4 font-label-md text-on-surface-variant text-center">Status</th>
+<th class="py-4 px-6 font-label-md text-on-surface-variant text-right">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- Row 1 -->
+<tr class="article-card-hover transition-colors group">
+<td class="py-4 px-6 text-center">
+<input class="article-checkbox w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+</td>
+<td class="py-4 px-4">
+<div class="w-24 aspect-video rounded-md overflow-hidden bg-surface-container border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-fashion shot of a person with structured features wearing elegant, gold-rimmed optical frames. The background is a soft, deep forest green with dappled golden lighting. The aesthetic is sophisticated and minimalist, focusing on the texture of the frames and the professional editorial look of an eyewear lifestyle blog." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRutKcJJhjGijtYQO7z-XxwwY-qFUpBCDhUxiqlurnmbx09w76vD3Ai9j-zfqkGz1goc_I6iaRPQwP2G58qI6ziYAQVEqqRLWrj2UKRLOGvBMt8i6qm4uLYjQwGKK1iYxYbqNiiJdxYpfmopt3QKwyPXdK5FWjlGkpmCxWYB4QxJpugTDMY3jNQ1yk6raGN0IwxXKqlyCSBdTnUWw0WZ3S_833kFCUNtOlcR1R1nPxyco2ch7prN1X5Q"/>
+</div>
+</td>
+<td class="py-4 px-4">
+<p class="font-title-lg text-primary leading-tight max-w-[280px] mb-1">Panduan Memilih Frame Sesuai Bentuk Wajah</p>
+<code class="text-[10px] text-on-surface-variant/70 font-mono">/blog/panduan-frame-wajah</code>
+</td>
+<td class="py-4 px-4">
+<span class="px-2 py-1 bg-surface-container text-on-surface-variant text-[11px] font-bold uppercase rounded tracking-wider">Tutorial</span>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-[10px] font-bold">AP</div>
+<span class="font-body-sm">Admin Prima</span>
+</div>
+</td>
+<td class="py-4 px-4 text-center">
+<p class="font-body-sm">24 Okt 2023</p>
+<p class="text-[10px] text-on-surface-variant">14:20 WIB</p>
+</td>
+<td class="py-4 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-800 rounded-full font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600"></span> Published
+                                </span>
+</td>
+<td class="py-4 px-6 text-right">
+<div class="flex justify-end gap-1">
+<button class="p-2 text-on-surface-variant hover:bg-primary-fixed hover:text-primary rounded-lg transition-colors" title="Preview">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-primary-fixed hover:text-primary rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-error-container hover:text-error rounded-lg transition-colors" title="Hapus">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="article-card-hover transition-colors group">
+<td class="py-4 px-6 text-center">
+<input class="article-checkbox w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+</td>
+<td class="py-4 px-4">
+<div class="w-24 aspect-video rounded-md overflow-hidden bg-surface-container border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Close-up of premium handcrafted eyewear parts—hinges, polished acetate edges, and signature engravings. Minimalist laboratory-like lighting, clinical and pristine, emphasizing precision and quality. Palette features muted tones of olive, charcoal, and warm amber. Professional product photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_zCqyLMK6v9q5GzIxs5mKv6QOWC_YKLwjGT37ezlJFCy6XuAgHinSTHQGG08NQtJ2Lkb6YkotVC8W9qpqN_81o2qQ7wov4u2-mQzLLVzh01UN0tZr1FSZ9s7JxcTN9w1wKZBMuoA82e9kWc8miJ6vX59E-XWbFA0vK-UguRZkzBy0uTKvanABGS0W8-TKuA9AgPzKD78oRnDk4qthroPjOBCh-UwJ_aCgE4BJmstQ8alUKaeWz93IPw"/>
+</div>
+</td>
+<td class="py-4 px-4">
+<p class="font-title-lg text-primary leading-tight max-w-[280px] mb-1">Tren Kacamata Signature 2024</p>
+<code class="text-[10px] text-on-surface-variant/70 font-mono">/blog/tren-signature-2024</code>
+</td>
+<td class="py-4 px-4">
+<span class="px-2 py-1 bg-surface-container text-on-surface-variant text-[11px] font-bold uppercase rounded tracking-wider">Lifestyle</span>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="A small circular avatar of a young woman with a sleek ponytail and clear frame glasses, looking professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9T4y3EAoGcmhviT0G763DoNusbQo5FwdLrm0h8TXI-nAwZj8sPF2VTolCJ-utB2vklTetChWQNtWVuw70ShG3t7v0sxDcjtxhtr9Lf13NQmKRnRs8LHEQLvQzrL_bxitUWoZ5yMzxxVjlPQBPzrbszN4xjQOOxHZLEamZaMaM_454SXxVZ9gnciwM3M-ziqxnwRMuq2f5dfrp76n5RQXomcwcVJehhcUVx2dDav6NuvvpqYFv67qbbw"/>
+<span class="font-body-sm">Siska Amelia</span>
+</div>
+</td>
+<td class="py-4 px-4 text-center">
+<p class="font-body-sm">-</p>
+<p class="text-[10px] text-on-surface-variant">Belum rilis</p>
+</td>
+<td class="py-4 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-3 py-1 bg-surface-container text-on-surface-variant rounded-full font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span> Draft
+                                </span>
+</td>
+<td class="py-4 px-6 text-right">
+<div class="flex justify-end gap-1">
+<button class="p-2 text-on-surface-variant hover:bg-primary-fixed hover:text-primary rounded-lg transition-colors" title="Preview">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-primary-fixed hover:text-primary rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-error-container hover:text-error rounded-lg transition-colors" title="Hapus">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="article-card-hover transition-colors group">
+<td class="py-4 px-6 text-center">
+<input class="article-checkbox w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox"/>
+</td>
+<td class="py-4 px-4">
+<div class="w-24 aspect-video rounded-md overflow-hidden bg-surface-container border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Elegant flat lay of an luxury eyewear case, microfiber cloth, and a pair of dark wood-texture glasses on a marble surface. Soft sunlight shadows from a window, creating a serene and premium morning mood. Colors: emerald green, white marble, and natural wood. Very high-end editorial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQlKyioJunsZl75q24ot2n6LzZ3Jn7QPA1uD7XdPYEcnCkrhow2xqiLN-72XmdFiWggdEVsKWEJKKtv31KqrvGGjLR7CoxIZu5TgyhBR3wQPl7YPC9buL3N3utEL0BISJizGX5CwTlPgppciMMJ4ZKNdCUGDjrQriyQ9--tgWAoqM_wsj6yLX9gTYaLlRlr_H22EC4thsZYS48CpfgtjMABaC-XcOyrkbr7gDgZIMx5q_6fVLREphDtw"/>
+</div>
+</td>
+<td class="py-4 px-4">
+<p class="font-title-lg text-primary leading-tight max-w-[280px] mb-1">Review Koleksi Premium: Autumn Edition</p>
+<code class="text-[10px] text-on-surface-variant/70 font-mono">/blog/review-koleksi-autumn</code>
+</td>
+<td class="py-4 px-4">
+<span class="px-2 py-1 bg-surface-container text-on-surface-variant text-[11px] font-bold uppercase rounded tracking-wider">Review</span>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center text-[10px] font-bold">JD</div>
+<span class="font-body-sm">John Doe</span>
+</div>
+</td>
+<td class="py-4 px-4 text-center">
+<p class="font-body-sm">12 Okt 2023</p>
+<p class="text-[10px] text-on-surface-variant">09:15 WIB</p>
+</td>
+<td class="py-4 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-800 rounded-full font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600"></span> Published
+                                </span>
+</td>
+<td class="py-4 px-6 text-right">
+<div class="flex justify-end gap-1">
+<button class="p-2 text-on-surface-variant hover:bg-primary-fixed hover:text-primary rounded-lg transition-colors" title="Preview">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-primary-fixed hover:text-primary rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-error-container hover:text-error rounded-lg transition-colors" title="Hapus">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination Footer -->
+<div class="bg-surface-container-low border-t border-outline-variant px-6 py-4 flex items-center justify-between">
+<p class="font-body-sm text-on-surface-variant">Menampilkan 1 - 10 dari 124 artikel</p>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="flex gap-1">
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-on-primary rounded-lg font-label-md">1</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container font-label-md">2</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container font-label-md">3</button>
+<span class="px-2 self-end text-on-surface-variant">...</span>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container font-label-md">13</button>
+</div>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Bulk Actions Bar -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 translate-y-24 opacity-0 transition-all duration-300 z-50 pointer-events-none" id="bulk-actions-bar">
+<div class="bg-primary text-on-primary px-8 py-4 rounded-full shadow-2xl flex items-center gap-8 border border-white/10 pointer-events-auto">
+<div class="flex items-center gap-3 pr-8 border-r border-on-primary/20">
+<span class="w-8 h-8 rounded-full bg-on-primary text-primary flex items-center justify-center font-bold text-sm" id="selection-count">0</span>
+<p class="font-label-md">Item terpilih</p>
+</div>
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-2 font-label-md hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[20px]">publish</span>
+                    Publish Semua
+                </button>
+<button class="flex items-center gap-2 font-label-md hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[20px]">folder_zip</span>
+                    Arsipkan
+                </button>
+<button class="flex items-center gap-2 font-label-md hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+                    Hapus Permanen
+                </button>
+<div class="h-6 w-[1px] bg-on-primary/20"></div>
+<button class="p-2 hover:bg-on-primary/10 rounded-full transition-colors" id="cancel-selection">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+        // Micro-interactions for Bulk Actions
+        const masterCheckbox = document.getElementById('master-checkbox');
+        const itemCheckboxes = document.querySelectorAll('.article-checkbox');
+        const bulkBar = document.getElementById('bulk-actions-bar');
+        const countSpan = document.getElementById('selection-count');
+        const cancelBtn = document.getElementById('cancel-selection');
+
+        function updateBulkBar() {
+            const checkedCount = document.querySelectorAll('.article-checkbox:checked').length;
+            if (checkedCount > 0) {
+                bulkBar.classList.remove('translate-y-24', 'opacity-0');
+                bulkBar.classList.add('translate-y-0', 'opacity-100');
+                countSpan.innerText = checkedCount;
+            } else {
+                bulkBar.classList.add('translate-y-24', 'opacity-0');
+                bulkBar.classList.remove('translate-y-0', 'opacity-100');
+            }
+        }
+
+        masterCheckbox.addEventListener('change', (e) => {
+            itemCheckboxes.forEach(cb => {
+                cb.checked = e.target.checked;
+                // Style the row
+                cb.closest('tr').classList.toggle('bg-primary/5', e.target.checked);
+            });
+            updateBulkBar();
+        });
+
+        itemCheckboxes.forEach(cb => {
+            cb.addEventListener('change', () => {
+                cb.closest('tr').classList.toggle('bg-primary/5', cb.checked);
+                updateBulkBar();
+                
+                // Update master checkbox state
+                const allChecked = [...itemCheckboxes].every(i => i.checked);
+                masterCheckbox.checked = allChecked;
+                masterCheckbox.indeterminate = !allChecked && [...itemCheckboxes].some(i => i.checked);
+            });
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            masterCheckbox.checked = false;
+            masterCheckbox.indeterminate = false;
+            itemCheckboxes.forEach(cb => {
+                cb.checked = false;
+                cb.closest('tr').classList.remove('bg-primary/5');
+            });
+            updateBulkBar();
+        });
+    </script>
+</body></html>

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="id" class="light">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Citra Prima - Tambah Produk Baru</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-container": "#353a3f",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-secondary-container": "#556957",
+                        "surface-variant": "#e1e3e4",
+                        "primary-fixed-dim": "#b8ccb1",
+                        "inverse-primary": "#b8ccb1",
+                        "secondary-fixed": "#d1e9d1",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#dfe3e9",
+                        "background": "#f8f9fa",
+                        "on-surface-variant": "#444841",
+                        "on-error": "#ffffff",
+                        "surface": "#f8f9fa",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#191c1d",
+                        "on-tertiary-fixed": "#171c20",
+                        "on-surface": "#191c1d",
+                        "secondary-container": "#d1e9d1",
+                        "primary-fixed": "#d4e8cc",
+                        "on-primary-fixed-variant": "#3a4b36",
+                        "surface-bright": "#f8f9fa",
+                        "primary-container": "#2d3e2a",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-dim": "#d9dadb",
+                        "inverse-surface": "#2e3132",
+                        "on-primary-container": "#95a98f",
+                        "tertiary": "#202429",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#0f1f0e",
+                        "on-tertiary-fixed-variant": "#43474c",
+                        "on-secondary-fixed": "#0d1f11",
+                        "on-tertiary-container": "#9fa4a9",
+                        "secondary": "#4f6351",
+                        "surface-tint": "#51634d",
+                        "outline": "#747871",
+                        "surface-container-high": "#e7e8e9",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#182816",
+                        "surface-container": "#edeeef",
+                        "on-secondary-fixed-variant": "#384b3a",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c4c8bf",
+                        "surface-container-low": "#f3f4f5",
+                        "tertiary-fixed-dim": "#c3c7cd",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#b6ccb6"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.125rem",
+                        lg: "0.25rem",
+                        xl: "0.5rem",
+                        full: "0.75rem"
+                    },
+                    spacing: {
+                        "container-max": "1440px",
+                        "sidebar-width": "260px",
+                        "margin-desktop": "32px",
+                        "margin-mobile": "16px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        gutter: "24px"
+                    },
+                    fontFamily: {
+                        "headline-sm": ["Montserrat"],
+                        "title-lg": ["Montserrat"],
+                        "body-sm": ["Montserrat"],
+                        "label-md": ["Montserrat"],
+                        "label-sm": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-md": ["Montserrat"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #f8f9fa; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #c4c8bf; border-radius: 10px; }
+        .page-enter {
+            animation: pageFadeInUp 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes pageFadeInUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes toastSlideIn {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .toast-animate {
+            animation: toastSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased overflow-x-hidden">
+
+<!-- Mobile Backdrop -->
+<div id="sidebarBackdrop" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden backdrop-blur-sm transition-opacity duration-300 opacity-0"></div>
+
+<!-- SideNavBar (Standardized Across All Pages) -->
+<aside id="sidebarDrawer" class="fixed left-0 top-0 h-full w-[260px] bg-primary flex flex-col p-stack-md z-50 -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out shadow-xl md:shadow-none">
+    <div class="flex items-center justify-between mb-8 px-2">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-secondary-container rounded-lg flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">token</span>
+            </div>
+            <div>
+                <h1 class="text-on-primary font-title-lg text-title-lg font-bold leading-tight tracking-tight">Citra Prima</h1>
+                <p class="text-on-primary opacity-60 font-label-sm text-label-sm">Signature CMS</p>
+            </div>
+        </div>
+        <button id="closeSidebarBtn" class="md:hidden text-on-primary/70 hover:text-on-primary p-1.5 rounded-lg hover:bg-primary-container min-w-[44px] min-h-[44px] flex items-center justify-center">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+    </div>
+
+    <nav class="flex-1 space-y-1.5 overflow-y-auto custom-scrollbar pr-1">
+        <!-- Dashboard -->
+        <a href="index.html" data-route="/admin/dashboard" class="flex items-center gap-3 px-4 py-3 text-on-primary opacity-75 hover:bg-primary-container hover:opacity-100 transition-all duration-150 rounded-lg hover:translate-x-1 min-h-[44px]">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="font-body-md text-body-md">Dashboard</span>
+        </a>
+
+        <!-- Katalog Produk (Active State) -->
+        <a href="katalog.html" data-route="/admin/products" class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-all duration-150 scale-[0.99] shadow-sm min-h-[44px]">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+            <span class="font-body-md text-body-md">Katalog Produk</span>
+        </a>
+
+        <!-- Pemasaran with Accordion Sub-menu -->
+        <div>
+            <button onclick="toggleSubMenu('menuPemasaran')" class="w-full flex items-center justify-between px-4 py-3 text-on-primary opacity-75 hover:bg-primary-container hover:opacity-100 transition-all duration-150 rounded-lg min-h-[44px]">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">campaign</span>
+                    <span class="font-body-md text-body-md">Pemasaran</span>
+                </div>
+                <span id="icon-menuPemasaran" class="material-symbols-outlined text-[18px] transition-transform duration-200">expand_more</span>
+            </button>
+            <div id="menuPemasaran" class="hidden pl-11 pr-2 py-1 space-y-1">
+                <a href="konten.html" data-route="/admin/banners" class="block py-2 px-3 text-on-primary opacity-60 hover:opacity-100 hover:bg-primary-container/50 rounded-md font-body-sm text-body-sm transition-colors min-h-[38px] flex items-center">Banner Website</a>
+                <a href="promo.html" data-route="/admin/promos" class="block py-2 px-3 text-on-primary opacity-60 hover:opacity-100 hover:bg-primary-container/50 rounded-md font-body-sm text-body-sm transition-colors min-h-[38px] flex items-center">Promo & Diskon</a>
+            </div>
+        </div>
+
+        <!-- Konten & Media with Accordion Sub-menu -->
+        <div>
+            <button onclick="toggleSubMenu('menuKonten')" class="w-full flex items-center justify-between px-4 py-3 text-on-primary opacity-75 hover:bg-primary-container hover:opacity-100 transition-all duration-150 rounded-lg min-h-[44px]">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined">article</span>
+                    <span class="font-body-md text-body-md">Konten & Media</span>
+                </div>
+                <span id="icon-menuKonten" class="material-symbols-outlined text-[18px] transition-transform duration-200">expand_more</span>
+            </button>
+            <div id="menuKonten" class="hidden pl-11 pr-2 py-1 space-y-1">
+                <a href="konten.html#articles" data-route="/admin/articles" class="block py-2 px-3 text-on-primary opacity-60 hover:opacity-100 hover:bg-primary-container/50 rounded-md font-body-sm text-body-sm transition-colors min-h-[38px] flex items-center">Artikel & Blog</a>
+                <a href="konten.html#testimonials" data-route="/admin/testimonials" class="block py-2 px-3 text-on-primary opacity-60 hover:opacity-100 hover:bg-primary-container/50 rounded-md font-body-sm text-body-sm transition-colors min-h-[38px] flex items-center">Testimoni</a>
+                <a href="konten.html#faq" data-route="/admin/faq" class="block py-2 px-3 text-on-primary opacity-60 hover:opacity-100 hover:bg-primary-container/50 rounded-md font-body-sm text-body-sm transition-colors min-h-[38px] flex items-center">FAQ</a>
+                <a href="konten.html#about" data-route="/admin/about-us" class="block py-2 px-3 text-on-primary opacity-60 hover:opacity-100 hover:bg-primary-container/50 rounded-md font-body-sm text-body-sm transition-colors min-h-[38px] flex items-center">Tentang Kami</a>
+            </div>
+        </div>
+
+        <!-- Pengaturan -->
+        <a href="settings.html" data-route="/admin/settings" class="flex items-center gap-3 px-4 py-3 text-on-primary opacity-75 hover:bg-primary-container hover:opacity-100 transition-all duration-150 rounded-lg hover:translate-x-1 min-h-[44px]">
+            <span class="material-symbols-outlined">settings</span>
+            <span class="font-body-md text-body-md">Pengaturan</span>
+        </a>
+    </nav>
+
+    <div class="mt-auto pt-6 border-t border-on-primary/10">
+        <div class="flex items-center justify-between px-2">
+            <div class="flex items-center gap-3 overflow-hidden">
+                <div class="w-10 h-10 rounded-full bg-primary-fixed overflow-hidden border border-outline-variant shrink-0">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4RQRVoCdkZa3qhCvt2C16lgD9YUvgeyggpoMuYBrZ44GiXpf405enVO7xHSvddYfCcA20FxPxkooEWfofI4hlSpCX3eqWNOC9MoYvzIyWWY2AywaNOKtvHml2jyK5-_F2rMRrKiUMtVLHBFTzD6f2Sy6Xxe7qKpiHUCWwhoZuu3-JQjso84FJYFyCxV31rnA2Y5PRAIDqqZy4Sx6PeJ0myvW-vu7YUcK26pIsxS6dhhCwxIpGI5Bt-A" alt="Admin Avatar" class="w-full h-full object-cover"/>
+                </div>
+                <div class="overflow-hidden">
+                    <p class="font-label-md text-label-md text-on-primary truncate">Admin Prime</p>
+                    <p class="font-label-sm text-label-sm text-on-primary/60 truncate">Super Admin</p>
+                </div>
+            </div>
+            <a href="login.html" data-route="/admin/logout" title="Logout" class="p-2 text-on-primary opacity-70 hover:opacity-100 hover:bg-primary-container rounded-lg transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
+                <span class="material-symbols-outlined">logout</span>
+            </a>
+        </div>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<main class="ml-0 md:ml-[260px] min-h-screen flex flex-col relative transition-all duration-300">
+    <!-- TopNavBar Shell -->
+    <header class="flex justify-between items-center h-16 px-4 md:px-margin-desktop bg-surface border-b border-outline-variant sticky top-0 z-40">
+        <div class="flex items-center gap-3">
+            <button id="openSidebarBtn" class="md:hidden w-11 h-11 flex items-center justify-center rounded-lg text-on-surface hover:bg-surface-container-low transition-colors shrink-0">
+                <span class="material-symbols-outlined text-[24px]">menu</span>
+            </button>
+            <a href="katalog.html" data-route="/admin/products" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors min-h-[44px]">
+                <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                <span class="font-label-md text-label-md hidden sm:inline">Kembali ke Katalog</span>
+            </a>
+            <span class="text-on-surface-variant/40 hidden sm:inline">/</span>
+            <span class="font-headline-sm text-headline-sm text-primary font-bold">Tambah Produk</span>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <span class="hidden md:inline text-label-sm text-on-surface-variant bg-surface-container-low px-3 py-1.5 rounded-full font-mono">Form Status: Draft Baru</span>
+        </div>
+    </header>
+
+    <!-- Form Canvas (with pb-28 to prevent overlap with sticky bottom bar) -->
+    <form id="productForm" onsubmit="return handleFormSubmit(event);" class="flex-1 overflow-y-auto p-4 sm:p-6 md:p-margin-desktop pb-28 sm:pb-32 space-y-8 max-w-container-max mx-auto w-full page-enter">
+        <!-- Grid layout: Single Column on mobile `< 768px`, 12-col on desktop `lg:grid-cols-12` -->
+        <div class="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-8">
+            <!-- Left Panel (Col Span 8 on desktop) -->
+            <div class="lg:col-span-8 space-y-6">
+                <!-- Card 1: Informasi Dasar -->
+                <div class="bg-white border border-outline-variant rounded-xl p-5 sm:p-6 space-y-5 shadow-sm">
+                    <h3 class="font-title-lg text-title-lg text-primary font-bold border-b border-outline-variant pb-3">Informasi Dasar Produk</h3>
+                    
+                    <div class="space-y-2">
+                        <label class="block font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Nama Produk <span class="text-error">*</span></label>
+                        <input required type="text" placeholder="Contoh: Meja Kerja Eksekutif Signature V2" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary min-h-[44px] transition-all"/>
+                        <p class="text-body-sm text-on-surface-variant/70">Gunakan nama yang jelas, spesifik, dan memuat kata kunci utama.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label class="block font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Kode SKU <span class="text-error">*</span></label>
+                            <input required type="text" placeholder="CP-FUR-001" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-mono text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary min-h-[44px] transition-all"/>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Brand / Seri</label>
+                            <select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary min-h-[44px] transition-all">
+                                <option>Citra Prima Signature</option>
+                                <option>Lumina Elite</option>
+                                <option>Aura Living</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Deskripsi Lengkap <span class="text-error">*</span></label>
+                        <textarea required rows="6" placeholder="Jelaskan keunggulan produk, material, dimensi, dan filosofi desain secara mendetail..." class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-4 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"></textarea>
+                    </div>
+                </div>
+
+                <!-- Card 2: Harga & Manajemen Stok -->
+                <div class="bg-white border border-outline-variant rounded-xl p-5 sm:p-6 space-y-5 shadow-sm">
+                    <h3 class="font-title-lg text-title-lg text-primary font-bold border-b border-outline-variant pb-3">Harga & Manajemen Stok</h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="space-y-2">
+                            <label class="block font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Harga Jual (Rp) <span class="text-error">*</span></label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-semibold pointer-events-none">Rp</span>
+                                <input required type="number" placeholder="2450000" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-12 pr-4 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary min-h-[44px] transition-all"/>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Harga Sebelum Diskon</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-semibold pointer-events-none">Rp</span>
+                                <input type="number" placeholder="2800000" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-12 pr-4 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary min-h-[44px] transition-all"/>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Stok Awal <span class="text-error">*</span></label>
+                            <input required type="number" placeholder="50" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary min-h-[44px] transition-all"/>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="space-y-2">
+                            <label class="block font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Berat Produk (Gram)</label>
+                            <input type="number" placeholder="15000" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary min-h-[44px] transition-all"/>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Dimensi (P x L x T cm)</label>
+                            <input type="text" placeholder="140 x 70 x 75" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary min-h-[44px] transition-all"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Media & Gambar Produk -->
+                <div class="bg-white border border-outline-variant rounded-xl p-5 sm:p-6 space-y-5 shadow-sm">
+                    <h3 class="font-title-lg text-title-lg text-primary font-bold border-b border-outline-variant pb-3">Galeri Foto Produk</h3>
+                    
+                    <div class="border-2 border-dashed border-outline-variant rounded-xl p-8 text-center hover:border-primary hover:bg-surface-container-low/50 transition-all cursor-pointer group flex flex-col items-center justify-center min-h-[160px]">
+                        <span class="material-symbols-outlined text-[48px] text-on-surface-variant/60 group-hover:text-primary transition-colors">cloud_upload</span>
+                        <p class="font-semibold text-primary font-body-md mt-2">Klik atau seret foto ke area ini untuk mengunggah</p>
+                        <p class="text-body-sm text-on-surface-variant mt-1">Format PNG, JPG, atau WEBP maksimal 5MB. Rasio optimal 1:1 persegi.</p>
+                        <input type="file" multiple accept="image/*" class="hidden"/>
+                    </div>
+
+                    <!-- Uploaded Previews -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
+                        <div class="relative rounded-lg overflow-hidden border border-outline-variant group aspect-square">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBENIhc9rlP1oiogcVEj0TjnenBPRgKAvby6SpU6vdw5-KcFMqQB7Xv3RL6QDm_CAtHc5To1FKSeLAN3dooinRASrFGcrmX3VERpmJvaw9-hr70JThnIXwGp1kLgQO-g4MnQy7pAyZPqtQf9nxfiX5Ki7l5sqCcuySoHrypUP9r2-c5I33OeLipvzFE2KACPnmu9pZlbvXJGXez1UJtJ2SR2lTykHwCmhCgVaKgiRWqM98hFPSWhQXk_A" alt="Preview 1" class="w-full h-full object-cover"/>
+                            <span class="absolute top-2 left-2 bg-primary text-on-primary text-[10px] font-bold px-2 py-0.5 rounded">Utama</span>
+                            <button type="button" class="absolute top-2 right-2 bg-black/60 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity min-h-[32px] min-w-[32px] flex items-center justify-center">
+                                <span class="material-symbols-outlined text-[16px]">delete</span>
+                            </button>
+                        </div>
+                        <div class="border border-outline-variant/60 rounded-lg flex items-center justify-center aspect-square bg-surface-container-low/40 text-on-surface-variant/50 hover:text-primary hover:border-primary/50 transition-all cursor-pointer">
+                            <span class="material-symbols-outlined text-[32px]">add_photo_alternate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel (Col Span 4 on desktop) -->
+            <div class="lg:col-span-4 space-y-6">
+                <!-- Card 4: Status & Pengaturan Publikasi -->
+                <div class="bg-white border border-outline-variant rounded-xl p-5 sm:p-6 space-y-5 shadow-sm">
+                    <h3 class="font-title-lg text-title-lg text-primary font-bold border-b border-outline-variant pb-3">Status Publikasi</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="space-y-2">
+                            <label class="block font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Status Tampilan</label>
+                            <select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary min-h-[44px]">
+                                <option value="published">Published (Langsung Tampil)</option>
+                                <option value="draft">Draft (Simpan Sementara)</option>
+                                <option value="private">Private (Hanya Internal)</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="block font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Kategori Produk</label>
+                            <select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary min-h-[44px]">
+                                <option>Furnitur Kantor & Ruang Kerja</option>
+                                <option>Furnitur Ruang Tamu & Keluarga</option>
+                                <option>Pencahayaan & Lampu Dekoratif</option>
+                                <option>Aksesoris & Dekorasi Meja</option>
+                            </select>
+                        </div>
+
+                        <div class="pt-2 border-t border-outline-variant/50 space-y-3">
+                            <label class="flex items-center justify-between cursor-pointer py-1 min-h-[44px]">
+                                <span class="font-body-md text-body-md font-medium text-on-surface">Produk Unggulan (Featured)</span>
+                                <input type="checkbox" checked class="rounded text-primary focus:ring-primary w-5 h-5"/>
+                            </label>
+                            <label class="flex items-center justify-between cursor-pointer py-1 min-h-[44px]">
+                                <span class="font-body-md text-body-md font-medium text-on-surface">Gratis Ongkir Signature</span>
+                                <input type="checkbox" class="rounded text-primary focus:ring-primary w-5 h-5"/>
+                            </label>
+                            <label class="flex items-center justify-between cursor-pointer py-1 min-h-[44px]">
+                                <span class="font-body-md text-body-md font-medium text-on-surface">Pre-Order Khusus</span>
+                                <input type="checkbox" class="rounded text-primary focus:ring-primary w-5 h-5"/>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Tag & SEO Meta -->
+                <div class="bg-white border border-outline-variant rounded-xl p-5 sm:p-6 space-y-5 shadow-sm">
+                    <h3 class="font-title-lg text-title-lg text-primary font-bold border-b border-outline-variant pb-3">Optimasi SEO & Tag</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="space-y-2">
+                            <label class="block font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Tag Produk</label>
+                            <input type="text" placeholder="meja, eksekutif, kayu, oak, signature" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary min-h-[44px] transition-all"/>
+                            <p class="text-body-sm text-on-surface-variant/70">Pisahkan dengan tanda koma (,)</p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="block font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">SEO Title</label>
+                            <input type="text" placeholder="Meja Kerja Minimalis Eksekutif - Citra Prima" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary min-h-[44px] transition-all"/>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="block font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">SEO Meta Description</label>
+                            <textarea rows="3" placeholder="Beli Meja Kerja Minimalis kualitas premium kayu oak alami dengan garansi resmi Citra Prima Signature..." class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-3 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sticky Action Bar at Bottom -->
+        <div class="fixed bottom-0 right-0 left-0 md:left-[260px] bg-white/95 backdrop-blur border-t border-outline-variant p-4 px-6 z-30 flex items-center justify-between shadow-lg">
+            <a href="katalog.html" data-route="/admin/products" class="bg-surface-container-low border border-outline-variant text-on-surface-variant px-6 py-2.5 rounded-lg font-label-md text-label-md hover:bg-surface-container transition-all min-h-[44px] flex items-center justify-center">
+                Batal
+            </a>
+            <div class="flex items-center gap-3">
+                <button type="button" class="hidden sm:flex bg-surface-container border border-outline-variant text-primary px-6 py-2.5 rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-all min-h-[44px] items-center justify-center">
+                    Simpan sebagai Draft
+                </button>
+                <button id="submitBtn" type="submit" class="bg-primary text-on-primary px-8 py-2.5 rounded-lg font-label-md text-label-md hover:opacity-90 transition-all active:scale-95 shadow-md flex items-center gap-2 min-h-[44px] justify-center">
+                    <span id="submitText">Simpan & Publish</span>
+                    <span id="submitSpinner" class="material-symbols-outlined animate-spin hidden text-[18px]">progress_activity</span>
+                </button>
+            </div>
+        </div>
+    </form>
+</main>
+
+<!-- Toast Notification -->
+<div id="toastNotification" class="fixed bottom-24 right-6 bg-[#15803d] text-white px-5 py-4 rounded-xl shadow-2xl flex items-center gap-3 z-50 hidden border border-white/20">
+    <span class="material-symbols-outlined text-[24px]">check_circle</span>
+    <div>
+        <h4 class="font-bold font-body-md">Produk Berhasil Dipublish!</h4>
+        <p class="font-body-sm text-white/80">Mengalihkan kembali ke Katalog Produk...</p>
+    </div>
+</div>
+
+<script>
+    // Sidebar Drawer Toggle Logic
+    const openSidebarBtn = document.getElementById('openSidebarBtn');
+    const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+    const sidebarDrawer = document.getElementById('sidebarDrawer');
+    const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+
+    function openDrawer() {
+        sidebarDrawer.classList.remove('-translate-x-full');
+        sidebarBackdrop.classList.remove('hidden');
+        setTimeout(() => sidebarBackdrop.classList.remove('opacity-0'), 10);
+    }
+
+    function closeDrawer() {
+        sidebarDrawer.classList.add('-translate-x-full');
+        sidebarBackdrop.classList.add('opacity-0');
+        setTimeout(() => sidebarBackdrop.classList.add('hidden'), 300);
+    }
+
+    if (openSidebarBtn) openSidebarBtn.addEventListener('click', openDrawer);
+    if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', closeDrawer);
+    if (sidebarBackdrop) sidebarBackdrop.addEventListener('click', closeDrawer);
+
+    // Accordion Sub-menu Toggle
+    function toggleSubMenu(menuId) {
+        const menu = document.getElementById(menuId);
+        const icon = document.getElementById('icon-' + menuId);
+        if (menu.classList.contains('hidden')) {
+            menu.classList.remove('hidden');
+            if (icon) icon.classList.add('rotate-180');
+        } else {
+            menu.classList.add('hidden');
+            if (icon) icon.classList.remove('rotate-180');
+        }
+    }
+
+    // Handle Form Submit & Toast Animation
+    function handleFormSubmit(e) {
+        e.preventDefault();
+        const submitBtn = document.getElementById('submitBtn');
+        const submitText = document.getElementById('submitText');
+        const submitSpinner = document.getElementById('submitSpinner');
+        const toast = document.getElementById('toastNotification');
+
+        if (submitBtn) submitBtn.disabled = true;
+        if (submitText) submitText.textContent = 'Menyimpan...';
+        if (submitSpinner) submitSpinner.classList.remove('hidden');
+
+        setTimeout(() => {
+            if (submitSpinner) submitSpinner.classList.add('hidden');
+            if (submitText) submitText.textContent = 'Berhasil!';
+            if (toast) {
+                toast.classList.remove('hidden');
+                toast.classList.add('toast-animate');
+            }
+            setTimeout(() => {
+                window.location.href = 'katalog.html';
+            }, 1600);
+        }, 800);
+
+        return false;
+    }
+</script>
+</body>
+</html>
